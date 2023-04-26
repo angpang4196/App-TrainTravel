@@ -13,6 +13,7 @@ public class SearchTrain extends HttpServlet {
 
 	@Override
 	protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		
 		req.getRequestDispatcher("/WEB-INF/views/trainList.jsp").forward(req, resp);
 
 	}

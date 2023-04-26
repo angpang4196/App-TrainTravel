@@ -9,7 +9,7 @@
 </head>
 <body>
 	<div>
-		<select>
+		<select placeholder="출발지">
 			<c:forEach items="" var="">
 				<option></option>
 			</c:forEach>
