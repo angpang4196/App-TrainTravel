@@ -33,7 +33,7 @@ public class CodeAPI {
 			HttpResponse<String> response = client.send(request, BodyHandlers.ofString());
 
 			Gson gson = new Gson();
-			System.out.println(response.body());
+			
 			CodeResponseResult result = gson.fromJson(response.body(), CodeResponseResult.class);
 			return result;
 
