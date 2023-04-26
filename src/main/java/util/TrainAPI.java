@@ -6,6 +6,8 @@ import java.net.http.HttpClient;
 import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
 import java.net.http.HttpResponse.BodyHandlers;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
@@ -15,15 +17,20 @@ import data.train.TrainResponseResult;
 
 public class TrainAPI {
 
-	public static TrainResponseResult getTrainResponseResult(String citycode) {
-		try { 
+	public static TrainResponseResult getTrainResponseResult(String depPlaceId, String arrPlaceId,
+			String depPlandTime) {
+
+		try {
 			String target = "http://apis.data.go.kr/1613000/TrainInfoService/getStrtpntAlocFndTrainInfo";
 
 			Map<String, String> params = new LinkedHashMap<>();
 			params.put("serviceKey",
 					"SeTtVLG3NcocSbzkF4EhdHQJAj8xemMsODPSqFQEaeW2INI7Mbj7FqIvchikdNkajvkkxqRU8oc6y9XLOx0nCg%3D%3D");
-			params.put("cityCode", citycode);
-			
+
+			params.put("depPlaceId", depPlaceId);
+			params.put("arrPlaceId", arrPlaceId);
+			params.put("depPlandTime", depPlandTime);
+
 			String queryString = QueryStringBuilder.build(params);
 			URI uri = new URI(target + "?" + queryString);
 
