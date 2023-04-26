@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -8,18 +8,17 @@
 <title>웰컴 페이지</title>
 </head>
 <body>
-	<c:choose>
-		<c:when test="${!sessionScope.logon }">
-			<form action="/login-task" method="POST">
-				<input type="text" name="id">
-				<input type="password" name="id">
-				<button type="submit">로그인</button>
-			</form>
-		</c:when>
-		<c:otherwise>
-			<button><a href="/searchTrain">비로그인 </a></button>	
-		</c:otherwise>
-		
-	</c:choose>
+	
+	<form action="/login-task" method="POST">
+		아이디 >> <input type="text" name="id"> 
+		비밀번호 >> <input type="password" name="pass">
+		<button type="submit">로그인</button>
+	</form>
+	
+	<div>
+		아직 계정이 없으신가요? <a href="/join">회원가입</a>
+	</div>
+
+
 </body>
 </html>

@@ -18,7 +18,7 @@ import util.CodeAPI;
 import util.StationAPI;
 
 @WebServlet("/searchTrain")
-public class SearchTrain extends HttpServlet {
+public class SearchTrainController extends HttpServlet {
 
 	@Override
 	protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {

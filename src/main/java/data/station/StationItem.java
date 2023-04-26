@@ -1,6 +1,6 @@
 package data.station;
 
-public class Station {
+public class StationItem {
 	String nodeid;
 	String nodename;
 

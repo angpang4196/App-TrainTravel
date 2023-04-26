@@ -8,7 +8,8 @@ import javax.servlet.http.HttpSessionListener;
 public class SessionInitializer implements HttpSessionListener {
 	@Override
 	public void sessionCreated(HttpSessionEvent se) {
-		se.getSession().setAttribute("logon", true);
+		se.getSession().setAttribute("logon", false);
+		se.getSession().setAttribute("logonUser", null);
 	}
 
 }

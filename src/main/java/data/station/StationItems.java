@@ -1,9 +1,9 @@
 package data.station;
 
 public class StationItems {
-	Station[] item;
+	StationItem[] item;
 
-	public Station[] getItem() {
+	public StationItem[] getItem() {
 		return item;
 	}
 
