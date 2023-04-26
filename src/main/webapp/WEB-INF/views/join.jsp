@@ -9,9 +9,10 @@
 </head>
 <body>
 	<div>
-		<form action="/join-task" method="POST">
-			아이디 <input type="text" name="id" /> 비밀번호 <input type="password" name="pass" />
-			<button type="submit">전송</button>
+		<form class="form-group" action="/join-task" method="POST">
+			아이디 <input class="form-input"type="text" name="id" /> 
+			비밀번호 <input class="form-input"type="password" name="pass" />
+			<button class="form-submit" type="submit">전송</button>
 		</form>
 	</div>
 </body>

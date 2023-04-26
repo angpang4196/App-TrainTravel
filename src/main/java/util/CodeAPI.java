@@ -27,13 +27,12 @@ public class CodeAPI {
 			String queryString = QueryStringBuilder.build(params);
 			URI uri = new URI(target + "?" + queryString);
 
-			// HttpClient 객체를 활용하는 방식
 			HttpClient client = HttpClient.newHttpClient();
 			HttpRequest request = HttpRequest.newBuilder(uri).GET().build();
 			HttpResponse<String> response = client.send(request, BodyHandlers.ofString());
 
 			Gson gson = new Gson();
-			
+
 			CodeResponseResult result = gson.fromJson(response.body(), CodeResponseResult.class);
 			return result;
 

@@ -10,16 +10,32 @@
 <body>
 	열차 출발 도착
 	<div>
-		<select>
-			<c:forEach items="${ci }" var="one">
-			<option>${one.cityname }</option>
-			</c:forEach>
-		</select>
-		<select>
-			<c:forEach items="${si }" var="one">
-			<option>${one.nodename }</option>
-			</c:forEach>
-		</select>
+		<form action="/trainInfo">
+			출발
+			<select>
+				<c:forEach items="${ci }" var="one">
+				<option>${one.cityname }</option>
+				</c:forEach>
+			</select>
+			<select name="dep">
+				<c:forEach items="${si }" var="one">
+				<option value="${one.nodeid }">${one.nodename }</option>
+				</c:forEach>
+			</select>
+			도착
+			<select>
+				<c:forEach items="${ci }" var="one">
+				<option>${one.cityname }</option>
+				</c:forEach>
+			</select>
+			<select name="arr">
+				<c:forEach items="${si }" var="one">
+				<option value="${one.nodeid }">${one.nodename }</option>
+				</c:forEach>
+			</select>
+			<input type="date" name="depPlandTime"/>
+			<button type="submit">조회</button>
+		</form>
 	</div>
 </body>
 </html>

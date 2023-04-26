@@ -8,11 +8,15 @@
 <title>웰컴 페이지</title>
 </head>
 <body>
-	
 	<form action="/login-task" method="POST">
 		아이디 >> <input type="text" name="id"> 
 		비밀번호 >> <input type="password" name="pass">
 		<button type="submit">로그인</button>
+		<p>
+			<c:if test="${param.cause eq 'error' }">
+				아이디 또는 비밀번호가 틀렸습니다
+			</c:if>
+		</p>
 	</form>
 	
 	<div>

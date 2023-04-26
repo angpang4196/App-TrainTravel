@@ -35,7 +35,7 @@ public class LoginTaskController extends HttpServlet {
 		StationItem[] si = StationAPI.getStationResponseResult("1").getResponse().getBody().getItems().getItem();
 
 		if (user == null) {
-			resp.sendRedirect("/user/login?cause=1");
+			resp.sendRedirect("/user/login?cause=error");
 		} else {
 			if (user.getPass().equals(pass)) {
 				HttpSession session = req.getSession();
@@ -46,7 +46,7 @@ public class LoginTaskController extends HttpServlet {
 				req.setAttribute("si", si);
 				req.getRequestDispatcher("WEB-INF/views/choose.jsp").forward(req, resp);
 			} else {
-				resp.sendRedirect("/user/login?cause=2");
+				resp.sendRedirect("/index?cause=error");
 			}
 		}
 		sqlSession.close();
