@@ -10,10 +10,21 @@
 <body>
 	<div>
 		<select>
-			<c:forEach items="" var="">
-				<option></option>
+			<c:forEach items="${list }" var="one">
+				<option>${one.cityname }</option>
 			</c:forEach>
 		</select>
+		<select>
+			<c:forEach items="${li }" var="i">
+				<option>${i.nodename }</option>
+			</c:forEach>
+		</select>
+		
+		<c:forEach items="${list }" var="one">
+				<a href="/trainList?city=${one.cityname }">${one.cityname }</a>
+		</c:forEach>
+		
+		
 	</div>
 </body>
 </html>
