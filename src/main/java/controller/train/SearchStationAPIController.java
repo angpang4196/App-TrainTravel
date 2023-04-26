@@ -20,24 +20,18 @@ public class SearchStationAPIController extends HttpServlet {
 
 	@Override
 	protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		
 
 		String citycode = req.getParameter("citycode");
 
 		StationResponseResult sr = StationAPI.getStationResponseResult(citycode);
 		StationItem[] st = sr.getResponse().getBody().getItems().getItem();
-//		System.out.println(st.toString());
-//		List<Station> li = new ArrayList<>();
-//		for (Station s : st) {
-//			li.add(s);
-//		}
-//		req.setAttribute("li", st);
+
 		Gson gson = new Gson();
 
 		resp.setContentType("text/plain;charset=utf-8");
 
 		PrintWriter out = resp.getWriter();
-		
+
 		out.print(gson.toJson(st));
 	}
 

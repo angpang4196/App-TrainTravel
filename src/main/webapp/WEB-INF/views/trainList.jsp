@@ -9,14 +9,12 @@
 </head>
 <body>
 	<form action="/trainInfo" method="get">
-
 		<div>
-
 			<select name="depPlaceId" id="depCity">
-				<option value="">출발지를 선택해주세요</option>
-				<c:forEach items="${list }" var="one">
-					<option value="${one.citycode }">${one.cityname }</option>
-				</c:forEach>
+				<option>출발지를 선택해주세요</option>
+					<c:forEach items="${list }" var="one">
+						<option value="${one.citycode }">${one.cityname }</option>
+					</c:forEach>
 			</select> <select name="dep" id="depstation">
 
 				<c:forEach items="${li }" var="i">

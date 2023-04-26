@@ -26,10 +26,13 @@ public class TrainAPI {
 			Map<String, String> params = new LinkedHashMap<>();
 			params.put("serviceKey",
 					"SeTtVLG3NcocSbzkF4EhdHQJAj8xemMsODPSqFQEaeW2INI7Mbj7FqIvchikdNkajvkkxqRU8oc6y9XLOx0nCg%3D%3D");
+			params.put("_type", "json");
 
 			params.put("depPlaceId", depPlaceId);
 			params.put("arrPlaceId", arrPlaceId);
 			params.put("depPlandTime", depPlandTime);
+			
+			System.out.println(depPlaceId + " / " + arrPlaceId + " / " + depPlandTime);
 
 			String queryString = QueryStringBuilder.build(params);
 			URI uri = new URI(target + "?" + queryString);
@@ -40,7 +43,7 @@ public class TrainAPI {
 			HttpResponse<String> response = client.send(request, BodyHandlers.ofString());
 
 			Gson gson = new Gson();
-			System.out.println(response.body());
+			System.out.println("response.body >>> " +response.body());
 			TrainResponseResult result = gson.fromJson(response.body(), TrainResponseResult.class);
 			return result;
 
