@@ -12,4 +12,10 @@ public class StationItem {
 		return nodename;
 	}
 
+	@Override
+	public String toString() {
+		return "Station [nodeid=" + nodeid + ", nodename=" + nodename + "]";
+	}
+	
+
 }

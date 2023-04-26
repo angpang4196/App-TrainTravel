@@ -35,7 +35,7 @@ public class StationAPI {
 			HttpResponse<String> response = client.send(request, BodyHandlers.ofString());
 
 			Gson gson = new Gson();
-			System.out.println(response.body());
+			
 			StationResponseResult result = gson.fromJson(response.body(), StationResponseResult.class);
 			return result;
 
