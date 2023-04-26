@@ -12,7 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import data.code.CodeItem;
 import data.code.CodeResponseResult;
-import data.station.Station;
+import data.station.StationItem;
 import data.station.StationResponseResult;
 import util.CodeAPI;
 import util.StationAPI;
@@ -25,21 +25,14 @@ public class SearchTrainController extends HttpServlet {
 
 		String cityCode = "1";
 		StationResponseResult srt = StationAPI.getStationResponseResult(cityCode);
-		Station[] station = srt.getResponse().getBody().getItems().getItem();
-		List<Station> li = new ArrayList<>();
-		for (Station i : station) {
-			li.add(i);
-		}
-		req.setAttribute("li", li);
+		StationItem[] station = srt.getResponse().getBody().getItems().getItem();
+
+		req.setAttribute("st", station);
 
 		CodeResponseResult result = CodeAPI.getCodeResponseResult();
-		CodeItem[] rst = result.getResponse().getBody().getItems().getItems();
-		List<CodeItem> list = new ArrayList<>();
-		for (CodeItem i : rst) {
-			list.add(i);
-		}
+		CodeItem[] ci = result.getResponse().getBody().getItems().getItems();
 
-		req.setAttribute("list", list);
+		req.setAttribute("ci", ci);
 
 		req.getRequestDispatcher("/WEB-INF/views/trainList.jsp").forward(req, resp);
 
