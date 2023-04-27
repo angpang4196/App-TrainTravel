@@ -18,7 +18,7 @@
 			</select> <select name="dep" id="depstation">
 
 				<c:forEach items="${si }" var="i">
-					<option value="${i.nodename }">${i.nodename }</option>
+					<option value="${i.nodename }">${i.nodename }역</option>
 				</c:forEach>
 			</select>
 		</div>
@@ -30,20 +30,18 @@
 				</c:forEach>
 			</select> <select name="arr" id="arrstation">
 				<c:forEach items="${si }" var="i">
-					<option value="${i.nodename }">${i.nodename }</option>
+					<option value="${i.nodename }">${i.nodename }역</option>
 				</c:forEach>
 			</select> <input type="date" name="depPlandTime" />
 
 		</div>
 		<button type="submit">열차조회</button>
-
+		<p>
+			<c:if test="${cause eq 'notData' }">
+				해당 날짜에 배차된 열차 정보가 없습니다.
+			</c:if>
+		</p>	
 	</form>
-	
-	<div>
-		<c:if test="${param.cause eq error }">
-			<p>해당 날짜의 배차된 열차 정보가 없습니다.</p>
-		</c:if>
-	</div>
 	<script>
 		document.querySelector("#depCity").onchange = function(evt) {
 			if (this.value === "")

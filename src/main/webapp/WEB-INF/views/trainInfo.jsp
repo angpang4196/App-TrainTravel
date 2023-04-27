@@ -9,7 +9,7 @@
 </head>
 <body>
 	<div>
-		출발역() >> <a href="/searchTour?area=${li.nodename }">도착역</a>
+		출발역 >> <a href="/datail?area=${ti.arrplacename}">도착역</a>
 	</div>
 	<div>
 		<table>
@@ -22,14 +22,14 @@
 				<th>열차종류</th>
 			</tr>
 			<c:forEach items="${ti }" var="one">
-				<tr>
-					<td>${one.depplacename }</td>
-					<td>${one.depplandtime }</td>
-					<td>${one.arrplacename }</td>
-					<td>${one.arrplandtime }</td>
-					<td>${one.adultcharge }</td>
-					<td>${one.traingradename }</td>
-				</tr>
+			<tr>
+				<td>${one.depplacename }역</td>
+				<td>${one.depplandtime }</td>
+				<td>${one.arrplacename }역</td>
+				<td>${one.arrplandtime }</td>
+				<td>${one.adultcharge }</td>
+				<td>${one.traingradename }</td>
+			</tr>
 			</c:forEach>
 		</table>
 	</div>
