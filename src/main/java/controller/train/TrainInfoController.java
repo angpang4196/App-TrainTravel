@@ -26,6 +26,7 @@ public class TrainInfoController extends HttpServlet {
 		String arrPlaceId = req.getParameter("arr");
 		String depPlandTime = req.getParameter("depPlandTime");
 
+
 		depPlandTime = depPlandTime.replaceAll("-", "");
 
 		TrainResponseResult tr = TrainAPI.getTrainResponseResult(depPlaceId, arrPlaceId, depPlandTime);
