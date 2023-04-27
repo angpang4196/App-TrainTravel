@@ -27,10 +27,12 @@ public class TrainAPI {
 			params.put("serviceKey",
 					"SeTtVLG3NcocSbzkF4EhdHQJAj8xemMsODPSqFQEaeW2INI7Mbj7FqIvchikdNkajvkkxqRU8oc6y9XLOx0nCg%3D%3D");
 
+			params.put("_type", "json");
+
 			params.put("depPlaceId", depPlaceId);
 			params.put("arrPlaceId", arrPlaceId);
 			params.put("depPlandTime", depPlandTime);
-
+			System.out.println(params);
 			String queryString = QueryStringBuilder.build(params);
 			URI uri = new URI(target + "?" + queryString);
 
@@ -41,8 +43,18 @@ public class TrainAPI {
 
 			Gson gson = new Gson();
 			System.out.println(response.body());
-			TrainResponseResult result = gson.fromJson(response.body(), TrainResponseResult.class);
-			return result;
+			
+			TrainResponseResult result = null;
+			
+			if(gson.fromJson(response.body(), TrainResponseResult.class) != null) {
+				result = gson.fromJson(response.body(), TrainResponseResult.class);
+				System.out.println(result);
+				return result;
+				
+			}else {
+				return null;
+			}
+
 
 		} catch (Exception e) {
 			e.printStackTrace();

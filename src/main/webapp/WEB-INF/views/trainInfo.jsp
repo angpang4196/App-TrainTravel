@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c"  uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -7,8 +8,13 @@
 <title>Insert title here</title>
 </head>
 <body>
+ 
+ <c:forEach items="${tr }" var="t">
+ <p>${t.arrplacename} - ${t.traingradename }</p>
+ 
+ </c:forEach>
+  
 
-  ${ti.arrplacename }
 
 </body>
 </html>

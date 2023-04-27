@@ -22,19 +22,25 @@ public class TrainInfoController extends HttpServlet{
 		String depPlaceId = req.getParameter("dep");
 		String arrPlaceId = req.getParameter("arr");
 		String depPlandTime = req.getParameter("depPlandTime");
-		
 		depPlandTime = depPlandTime.replaceAll("-", "");
+		
+		
+	
 		
 		TrainResponseResult tr = TrainAPI.getTrainResponseResult(depPlaceId, arrPlaceId, depPlandTime);
 		
 		
 		
 		
-		TrainItem[] ti=  tr.getResponse().getBody().getItems().getItem();
-		req.setAttribute("ti", ti);
+		if(tr != null) {
+		 req.setAttribute("tr", tr.getResponse().getBody().getItems().getItem());   
+		 req.getRequestDispatcher("/WEB-INF/views/trainInfo.jsp").forward(req, resp);
+		}
 		
 		
-		req.getRequestDispatcher("/WEB-INF/views/trainInfo.jsp").forward(req, resp);
+
+		
+		
 	}
 
 }
