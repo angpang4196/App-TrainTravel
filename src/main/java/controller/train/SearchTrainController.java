@@ -21,7 +21,7 @@ public class SearchTrainController extends HttpServlet {
 	@Override
 	protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
-		String cityCode = "1";
+		String cityCode = req.getParameter("citycode");
 		StationResponseResult srt = StationAPI.getStationResponseResult(cityCode);
 		StationItem[] station = srt.getResponse().getBody().getItems().getItem();
 
