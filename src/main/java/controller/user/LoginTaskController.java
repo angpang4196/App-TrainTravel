@@ -35,7 +35,7 @@ public class LoginTaskController extends HttpServlet {
 		StationItem[] si = StationAPI.getStationResponseResult("1").getResponse().getBody().getItems().getItem();
 
 		if (user == null) {
-			resp.sendRedirect("/user/login?cause=error");
+			resp.sendRedirect("/index?cause=error");
 		} else {
 			if (user.getPass().equals(pass)) {
 				HttpSession session = req.getSession();

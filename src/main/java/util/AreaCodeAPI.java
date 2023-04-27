@@ -39,6 +39,7 @@ public class AreaCodeAPI {
 			Gson gson = new Gson();
 
 			AreaCodeResponseResult result = gson.fromJson(response.body(), AreaCodeResponseResult.class);
+			System.out.println(result);
 			return result;
 
 		} catch (Exception e) {

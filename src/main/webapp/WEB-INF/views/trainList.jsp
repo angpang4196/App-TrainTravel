@@ -38,6 +38,12 @@
 		<button type="submit">열차조회</button>
 
 	</form>
+	
+	<div>
+		<c:if test="${param.cause eq error }">
+			<p>해당 날짜의 배차된 열차 정보가 없습니다.</p>
+		</c:if>
+	</div>
 	<script>
 		document.querySelector("#depCity").onchange = function(evt) {
 			if (this.value === "")

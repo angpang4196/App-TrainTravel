@@ -49,7 +49,7 @@ public class TrainAPI {
 			
 			if(gson.fromJson(response.body(), TrainResponseResult.class) != null) {
 				result = gson.fromJson(response.body(), TrainResponseResult.class);
-				System.out.println(result);
+			
 				return result;
 				
 			}else {
