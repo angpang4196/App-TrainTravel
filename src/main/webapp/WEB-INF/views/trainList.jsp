@@ -12,12 +12,12 @@
 		<div>
 			<select name="depPlaceId" id="depCity">
 				<option>출발지를 선택해주세요</option>
-					<c:forEach items="${list }" var="one">
+					<c:forEach items="${ci }" var="one">
 						<option value="${one.citycode }">${one.cityname }</option>
 					</c:forEach>
 			</select> <select name="dep" id="depstation">
 
-				<c:forEach items="${li }" var="i">
+				<c:forEach items="${si }" var="i">
 					<option value="${i.nodename }">${i.nodename }</option>
 				</c:forEach>
 			</select>
@@ -25,11 +25,11 @@
 		<div>
 			<select name="arrPlaceId" id="arrCity">
 				<option value="">도착지를 선택해주세요</option>
-				<c:forEach items="${list }" var="one">
+				<c:forEach items="${ci }" var="one">
 					<option value="${one.citycode }">${one.cityname }</option>
 				</c:forEach>
 			</select> <select name="arr" id="arrstation">
-				<c:forEach items="${li }" var="i">
+				<c:forEach items="${si }" var="i">
 					<option value="${i.nodename }">${i.nodename }</option>
 				</c:forEach>
 			</select> <input type="date" name="depPlandTime" />

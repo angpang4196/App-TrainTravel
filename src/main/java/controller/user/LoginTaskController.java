@@ -44,7 +44,7 @@ public class LoginTaskController extends HttpServlet {
 				
 				req.setAttribute("ci", ci);
 				req.setAttribute("si", si);
-				req.getRequestDispatcher("WEB-INF/views/choose.jsp").forward(req, resp);
+				req.getRequestDispatcher("WEB-INF/views/trainList.jsp").forward(req, resp);
 			} else {
 				resp.sendRedirect("/index?cause=error");
 			}

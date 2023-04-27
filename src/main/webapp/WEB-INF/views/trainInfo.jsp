@@ -1,10 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
-<<<<<<< HEAD
-<%@ taglib prefix="c"  uri="http://java.sun.com/jsp/jstl/core"%>
-=======
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
->>>>>>> 235b63341822f4cb74aadd1ebc8de7070db5b41a
+	pageEncoding="UTF-8"%>
+
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+
+
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -38,6 +38,6 @@
 			</c:forEach>
 		</table>
 	</div>
->>>>>>> 235b63341822f4cb74aadd1ebc8de7070db5b41a
+
 </body>
 </html>
