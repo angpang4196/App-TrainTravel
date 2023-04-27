@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="users">
+	<select id="findById" resultType="data.User">
+		select * from users where id = #{id}
+	</select>
+	<insert id="join" parameterType="hashmap">
+		insert into users values(#{id}, #{pass})
+	</insert>
+</mapper>

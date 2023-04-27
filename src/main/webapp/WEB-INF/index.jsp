@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -8,10 +9,20 @@
 </head>
 <body>
 	<form action="/login-task" method="POST">
-		<input type="text" name="id">
-		<input type="password" name="id">
+		아이디 >> <input type="text" name="id"> 
+		비밀번호 >> <input type="password" name="pass">
 		<button type="submit">로그인</button>
+		<p>
+			<c:if test="${param.cause eq 'error' }">
+				아이디 또는 비밀번호가 틀렸습니다
+			</c:if>
+		</p>
 	</form>
-	<button><a href="/searchTrain">비로그인 </a></button>
+	
+	<div>
+		아직 계정이 없으신가요? <a href="/join">회원가입</a>
+	</div>
+
+
 </body>
 </html>

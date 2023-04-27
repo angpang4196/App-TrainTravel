@@ -21,19 +21,18 @@ public class CodeAPI {
 
 			Map<String, String> params = new LinkedHashMap<>();
 			params.put("serviceKey",
-					"SeTtVLG3NcocSbzkF4EhdHQJAj8xemMsODPSqFQEaeW2INI7Mbj7FqIvchikdNkajvkkxqRU8oc6y9XLOx0nCg%3D%3D");
+					"pn%2BYJ4SQX3S%2B%2FgbKi30JDEXj5Wqo2HYKhhKbzU1dC9d3NcSrmyo1a4WAbD72FlI0g2dPY%2B7ngYVX7i0gmvp5pw%3D%3D");
 			params.put("_type", "json");
 
 			String queryString = QueryStringBuilder.build(params);
 			URI uri = new URI(target + "?" + queryString);
 
-			// HttpClient 객체를 활용하는 방식
 			HttpClient client = HttpClient.newHttpClient();
 			HttpRequest request = HttpRequest.newBuilder(uri).GET().build();
 			HttpResponse<String> response = client.send(request, BodyHandlers.ofString());
 
 			Gson gson = new Gson();
-			
+
 			CodeResponseResult result = gson.fromJson(response.body(), CodeResponseResult.class);
 			return result;
 
