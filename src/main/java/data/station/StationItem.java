@@ -16,6 +16,5 @@ public class StationItem {
 	public String toString() {
 		return "Station [nodeid=" + nodeid + ", nodename=" + nodename + "]";
 	}
-	
 
 }

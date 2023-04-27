@@ -25,6 +25,10 @@ public class TrainInfoController extends HttpServlet {
 		depPlandTime = depPlandTime.replaceAll("-", "");
 
 		TrainResponseResult tr = TrainAPI.getTrainResponseResult(depPlaceId, arrPlaceId, depPlandTime);
+		
+		if(tr == null) {
+			resp.sendRedirect("/views/trainlist?cause=error");
+		}
 
 		TrainItem[] ti = tr.getResponse().getBody().getItems().getItem();
 		req.setAttribute("ti", ti);
