@@ -10,25 +10,29 @@ import java.util.Map;
 
 import com.google.gson.Gson;
 
-import data.areaCode.AreaCodeResponseResult;
+import data.tour.detail.TourDetailResponseResult;
 
-public class AreaCodeAPI {
-
-	public static AreaCodeResponseResult getAreaCodeResponseResult() {
-
+public class TourDetailAPI {
+	public static TourDetailResponseResult getTourDetailResponseResult(String contentid) {
 		try {
-			String target = "http://apis.data.go.kr/B551011/KorService1/areaCode1";
+			String target = "http://apis.data.go.kr/B551011/KorService1/detailCommon1";
 
 			Map<String, String> params = new LinkedHashMap<>();
 			params.put("serviceKey",
 					"SeTtVLG3NcocSbzkF4EhdHQJAj8xemMsODPSqFQEaeW2INI7Mbj7FqIvchikdNkajvkkxqRU8oc6y9XLOx0nCg%3D%3D");
 			params.put("_type", "json");
-			params.put("MobileOS", "ETC");
 			params.put("MobileApp", "AppTest");
-			params.put("numOfRows", "17");
+			params.put("MobileOS", "ETC");
+			params.put("contentId", contentid);
+			params.put("defaultYN", "Y");
+			params.put("addrinfoYN", "Y");
+			params.put("mapinfoYN", "Y");
+			params.put("overviewYN", "Y");
+			params.put("firstImageYN", "Y");
 
 			String queryString = QueryStringBuilder.build(params);
 			URI uri = new URI(target + "?" + queryString);
+			System.out.println(uri);
 
 			HttpClient client = HttpClient.newHttpClient();
 			HttpRequest request = HttpRequest.newBuilder(uri).GET().build();
@@ -36,8 +40,8 @@ public class AreaCodeAPI {
 
 			Gson gson = new Gson();
 
-			AreaCodeResponseResult result = gson.fromJson(response.body(), AreaCodeResponseResult.class);
-			
+			TourDetailResponseResult result = gson.fromJson(response.body(), TourDetailResponseResult.class);
+			System.out.println(result.getResponse().getBody().getItems().getItem() == null ? "ex" : "null");
 			return result;
 
 		} catch (Exception e) {

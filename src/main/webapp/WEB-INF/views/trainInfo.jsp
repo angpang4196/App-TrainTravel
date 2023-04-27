@@ -14,7 +14,7 @@
 <body>
 
 	<div>
-		출발역() >> <a href="/searchTour?area=${li.nodename }">도착역</a>
+		출발역() >> <a href="/summary?area=${ci.cityname }">도착역</a>
 	</div>
 	<div>
 		<table>

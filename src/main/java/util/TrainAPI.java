@@ -43,7 +43,6 @@ public class TrainAPI {
 			HttpResponse<String> response = client.send(request, BodyHandlers.ofString());
 
 			Gson gson = new Gson();
-			System.out.println(response.body());
 			
 			TrainResponseResult result = null;
 			

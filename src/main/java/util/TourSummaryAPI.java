@@ -11,13 +11,14 @@ import java.util.Map;
 import com.google.gson.Gson;
 
 import data.areaCode.AreaCodeResponseResult;
+import data.tour.summary.TourSummaryResponseResult;
 
-public class AreaCodeAPI {
-
-	public static AreaCodeResponseResult getAreaCodeResponseResult() {
-
+public class TourSummaryAPI {
+	
+	public static TourSummaryResponseResult getTourSummaryResponseResult() {
+		
 		try {
-			String target = "http://apis.data.go.kr/B551011/KorService1/areaCode1";
+			String target = "http://apis.data.go.kr/B551011/KorService1/areaBasedList1";
 
 			Map<String, String> params = new LinkedHashMap<>();
 			params.put("serviceKey",
@@ -25,7 +26,9 @@ public class AreaCodeAPI {
 			params.put("_type", "json");
 			params.put("MobileOS", "ETC");
 			params.put("MobileApp", "AppTest");
-			params.put("numOfRows", "17");
+			params.put("numOfRows", "10");
+			
+			
 
 			String queryString = QueryStringBuilder.build(params);
 			URI uri = new URI(target + "?" + queryString);
@@ -36,7 +39,7 @@ public class AreaCodeAPI {
 
 			Gson gson = new Gson();
 
-			AreaCodeResponseResult result = gson.fromJson(response.body(), AreaCodeResponseResult.class);
+			TourSummaryResponseResult result = gson.fromJson(response.body(), TourSummaryResponseResult.class);
 			
 			return result;
 
@@ -44,7 +47,10 @@ public class AreaCodeAPI {
 			e.printStackTrace();
 			return null;
 		}
-
+		
+		
+		
+		
 	}
 
 }
