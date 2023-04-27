@@ -9,9 +9,8 @@
 <title>기차 요금 및 시간 정보제공 페이지</title>
 </head>
 <body>
-
 	<div>
-		출발역() >> <a href="/summary?area=${ci.cityname }">도착역</a>
+		출발역 >> <a href="/datail?area=${ti.arrplacename}">도착역</a>
 	</div>
 	<div>
 		<table>
@@ -25,9 +24,9 @@
 			</tr>
 			<c:forEach items="${ti }" var="one">
 				<tr>
-					<td>${one.depplacename }</td>
+					<td>${one.depplacename }역</td>
 					<td>${one.depplandtime }</td>
-					<td>${one.arrplacename }</td>
+					<td>${one.arrplacename }역</td>
 					<td>${one.arrplandtime }</td>
 					<td>${one.adultcharge }</td>
 					<td>${one.traingradename }</td>
@@ -35,6 +34,5 @@
 			</c:forEach>
 		</table>
 	</div>
-
 </body>
 </html>

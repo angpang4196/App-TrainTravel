@@ -8,8 +8,12 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import data.code.CodeItem;
+import data.station.StationItem;
 import data.train.TrainItem;
 import data.train.TrainResponseResult;
+import util.CodeAPI;
+import util.StationAPI;
 import util.TrainAPI;
 
 @WebServlet("/trainInfo")
@@ -26,15 +30,21 @@ public class TrainInfoController extends HttpServlet {
 		depPlandTime = depPlandTime.replaceAll("-", "");
 
 		TrainResponseResult tr = TrainAPI.getTrainResponseResult(depPlaceId, arrPlaceId, depPlandTime);
-		
-		if(tr == null) {
-			resp.sendRedirect("/views/trainlist?cause=error");
+
+		CodeItem[] ci = CodeAPI.getCodeResponseResult().getResponse().getBody().getItems().getItems();
+		StationItem[] si = StationAPI.getStationResponseResult("1").getResponse().getBody().getItems().getItem();
+		if (tr == null) {
+			req.setAttribute("ci", ci);
+			req.setAttribute("si", si);
+
+			req.setAttribute("cause", "notData");
+			req.getRequestDispatcher("/WEB-INF/views/trainList.jsp").forward(req, resp);
+		} else {
+			TrainItem[] ti = tr.getResponse().getBody().getItems().getItem();
+			req.setAttribute("ti", ti);
+
+			req.getRequestDispatcher("/WEB-INF/views/trainInfo.jsp").forward(req, resp);
 		}
-
-		TrainItem[] ti = tr.getResponse().getBody().getItems().getItem();
-		req.setAttribute("ti", ti);
-
-		req.getRequestDispatcher("/WEB-INF/views/trainInfo.jsp").forward(req, resp);
 	}
 
 }
