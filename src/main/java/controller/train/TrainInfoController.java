@@ -22,17 +22,29 @@ public class TrainInfoController extends HttpServlet {
 	@Override
 	protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
+		resp.setContentType("text/html;charset=utf-8");
+
+		String arrInfo = req.getParameter("arrPlaceId");
+		String[] arrInfos = arrInfo.split("&");
+		String arrCode = arrInfos[0];
+		String arrName = arrInfos[1];
+		
 		String depPlaceId = req.getParameter("dep");
 		String arrPlaceId = req.getParameter("arr");
 		String depPlandTime = req.getParameter("depPlandTime");
 
-
 		depPlandTime = depPlandTime.replaceAll("-", "");
+
+		System.out.println("dep : " + depPlaceId);
+		System.out.println("arr : " + arrPlaceId);
+		System.out.println("time : " + depPlandTime);
+		System.out.println(arrName);
 
 		TrainResponseResult tr = TrainAPI.getTrainResponseResult(depPlaceId, arrPlaceId, depPlandTime);
 
 		CodeItem[] ci = CodeAPI.getCodeResponseResult().getResponse().getBody().getItems().getItems();
 		StationItem[] si = StationAPI.getStationResponseResult("1").getResponse().getBody().getItems().getItem();
+
 		if (tr == null) {
 			req.setAttribute("ci", ci);
 			req.setAttribute("si", si);
@@ -42,6 +54,7 @@ public class TrainInfoController extends HttpServlet {
 		} else {
 			TrainItem[] ti = tr.getResponse().getBody().getItems().getItem();
 			req.setAttribute("ti", ti);
+			req.setAttribute("arrName", arrName);
 
 			req.getRequestDispatcher("/WEB-INF/views/trainInfo.jsp").forward(req, resp);
 		}

@@ -7,16 +7,13 @@ import java.net.http.HttpResponse;
 import java.net.http.HttpResponse.BodyHandlers;
 import java.util.LinkedHashMap;
 import java.util.Map;
-
 import com.google.gson.Gson;
-
-import data.areaCode.AreaCodeResponseResult;
 import data.tour.summary.TourSummaryResponseResult;
 
 public class TourSummaryAPI {
-	
-	public static TourSummaryResponseResult getTourSummaryResponseResult() {
-		
+
+	public static TourSummaryResponseResult getTourSummaryResponseResult(String code) {
+
 		try {
 			String target = "http://apis.data.go.kr/B551011/KorService1/areaBasedList1";
 
@@ -26,9 +23,8 @@ public class TourSummaryAPI {
 			params.put("_type", "json");
 			params.put("MobileOS", "ETC");
 			params.put("MobileApp", "AppTest");
-			params.put("numOfRows", "10");
-			
-			
+			params.put("areaCode", code);
+			params.put("listYN", "Y");
 
 			String queryString = QueryStringBuilder.build(params);
 			URI uri = new URI(target + "?" + queryString);
@@ -40,17 +36,14 @@ public class TourSummaryAPI {
 			Gson gson = new Gson();
 
 			TourSummaryResponseResult result = gson.fromJson(response.body(), TourSummaryResponseResult.class);
-			
+
 			return result;
 
 		} catch (Exception e) {
 			e.printStackTrace();
 			return null;
 		}
-		
-		
-		
-		
+
 	}
 
 }

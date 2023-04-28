@@ -1,13 +1,10 @@
 package util;
 
 import java.net.URI;
-import java.net.URLEncoder;
 import java.net.http.HttpClient;
 import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
 import java.net.http.HttpResponse.BodyHandlers;
-import java.text.SimpleDateFormat;
-import java.util.Date;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
@@ -25,11 +22,8 @@ public class TrainAPI {
 
 			Map<String, String> params = new LinkedHashMap<>();
 			params.put("serviceKey",
-					"SeTtVLG3NcocSbzkF4EhdHQJAj8xemMsODPSqFQEaeW2INI7Mbj7FqIvchikdNkajvkkxqRU8oc6y9XLOx0nCg%3D%3D");
+					"pn%2BYJ4SQX3S%2B%2FgbKi30JDEXj5Wqo2HYKhhKbzU1dC9d3NcSrmyo1a4WAbD72FlI0g2dPY%2B7ngYVX7i0gmvp5pw%3D%3D");
 			params.put("_type", "json");
-
-			params.put("_type", "json");
-
 			params.put("depPlaceId", depPlaceId);
 			params.put("arrPlaceId", arrPlaceId);
 			params.put("depPlandTime", depPlandTime);
@@ -43,23 +37,19 @@ public class TrainAPI {
 			HttpResponse<String> response = client.send(request, BodyHandlers.ofString());
 
 			Gson gson = new Gson();
-			
+
 			TrainResponseResult result = null;
-			
-			if(gson.fromJson(response.body(), TrainResponseResult.class) != null) {
+
+			if (gson.fromJson(response.body(), TrainResponseResult.class) != null) {
 				result = gson.fromJson(response.body(), TrainResponseResult.class);
-			
+
 				return result;
-				
-			}else {
+			} else {
 				return null;
 			}
-
 		} catch (Exception e) {
 			e.printStackTrace();
 			return null;
 		}
-
 	}
-
 }

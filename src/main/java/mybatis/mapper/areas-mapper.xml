@@ -3,8 +3,8 @@
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="areas">
-	<select id="findByCode" resultType="data.area.Area">
-		select * from areas where code = #{code}
+	<select id="findByName" resultType="data.area.Area">
+		select * from areas where name = #{name}
 	</select>
 	<insert id="save" parameterType="hashmap">
 		insert into areas values(#{name}, #{code})

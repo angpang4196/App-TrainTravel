@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>해당 관광지 상세 정보 페이지</title>
 </head>
 <body>
 
