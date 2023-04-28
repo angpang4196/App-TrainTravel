@@ -26,7 +26,7 @@ public class JoinTaskController extends HttpServlet {
 
 		String id = req.getParameter("id");
 		String pass = req.getParameter("pass");
-		
+
 		User user = sqlSession.selectOne("users.findById", id);
 		if (user == null) {
 			Map<String, String> map = new HashMap<>();
@@ -37,8 +37,9 @@ public class JoinTaskController extends HttpServlet {
 
 			req.getRequestDispatcher("/WEB-INF/views/trainList.jsp").forward(req, resp);
 		} else {
-			req.getRequestDispatcher("/WEB-INF/views/join.jsp?cause=error").forward(req, resp);
+			resp.sendRedirect("/views/join?cause=existId");
 		}
+		sqlSession.close();
 
 	}
 

@@ -23,6 +23,7 @@ public class LoginTaskController extends HttpServlet {
 
 	@Override
 	protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		resp.setContentType("text/html;charset=utf-8");
 
 		SqlSessionFactory factory = (SqlSessionFactory) req.getServletContext().getAttribute("sqlSessionFactory");
 		SqlSession sqlSession = factory.openSession();
@@ -44,7 +45,7 @@ public class LoginTaskController extends HttpServlet {
 
 				req.setAttribute("ci", ci);
 				req.setAttribute("si", si);
-				req.getRequestDispatcher("WEB-INF/views/trainList.jsp").forward(req, resp);
+				req.getRequestDispatcher("/WEB-INF/views/trainList.jsp").forward(req, resp);
 			} else {
 				resp.sendRedirect("/index?cause=error");
 			}

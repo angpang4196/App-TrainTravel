@@ -20,10 +20,10 @@ public class TourDetailController extends HttpServlet {
 	protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
 		String contentId = req.getParameter("contentId");
-		
+
 		TourDetailResponseResult tsr = TourDetailAPI.getTourDetailResponseResult(contentId);
-		TourDetailItem[] tdi =tsr.getResponse().getBody().getItems().getItem();
-		
+		TourDetailItem[] tdi = tsr.getResponse().getBody().getItems().getItem();
+
 		req.setAttribute("detail", tdi[0]);
 
 		req.getRequestDispatcher("/WEB-INF/views/detail.jsp").forward(req, resp);

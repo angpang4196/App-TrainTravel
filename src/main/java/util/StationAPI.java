@@ -7,10 +7,7 @@ import java.net.http.HttpResponse;
 import java.net.http.HttpResponse.BodyHandlers;
 import java.util.LinkedHashMap;
 import java.util.Map;
-
 import com.google.gson.Gson;
-
-import data.code.CodeResponseResult;
 import data.station.StationResponseResult;
 
 public class StationAPI {

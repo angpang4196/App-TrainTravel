@@ -10,7 +10,10 @@
 </head>
 <body>
 	<div>
-		출발역 >> <a href="/datail?area=${ti.arrplacename}">도착역</a>
+		
+	</div>
+	<div>
+		<a href="/summary?area=${arrName}">${arrName } 관광정보 보기</a>
 	</div>
 	<div>
 		<table>

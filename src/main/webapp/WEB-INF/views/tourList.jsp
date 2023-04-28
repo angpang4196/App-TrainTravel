@@ -5,15 +5,20 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>List of Tourist Attractions</title>
 </head>
 <body>
-<c:forEach items="${tsi }" var="t">
- ${t.title }
-<a href="/detail?contentId=${t.contentid }">디테일</a>
-
-</c:forEach>
-
-
+	<div class="container">
+		<h1>관광 명소 리스트</h1>
+		<c:forEach items="${tsi}" var="t">
+			<div class="attraction">
+				<h2>${t.title}</h2>
+				<div class="photo">
+					<a href="/detail?contentId=${t.contentid}"><img
+						src="${t.firstimage}" /></a>
+				</div>
+			</div>
+		</c:forEach>
+	</div>
 </body>
 </html>

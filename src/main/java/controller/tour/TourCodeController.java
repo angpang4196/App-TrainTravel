@@ -8,6 +8,10 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.apache.ibatis.session.SqlSession;
+import org.apache.ibatis.session.SqlSessionFactory;
+
+import data.area.Area;
 import data.tour.summary.TourSummaryItem;
 import data.tour.summary.TourSummaryResponseResult;
 import util.TourSummaryAPI;
@@ -20,12 +24,18 @@ public class TourCodeController extends HttpServlet {
 
 		String cityname = req.getParameter("area");
 
-		TourSummaryResponseResult tsr = TourSummaryAPI.getTourSummaryResponseResult();
+		SqlSessionFactory factory = (SqlSessionFactory) req.getServletContext().getAttribute("sqlSessionFactory");
+		SqlSession sqlSession = factory.openSession();
+
+		Area area = sqlSession.selectOne("areas.findByName", cityname);
+		String code = area.getCode();
+
+		TourSummaryResponseResult tsr = TourSummaryAPI.getTourSummaryResponseResult(code);
 		TourSummaryItem[] tsi = tsr.getResponse().getBody().getItems().getItem();
 		req.setAttribute("tsi", tsi);
 
 		req.getRequestDispatcher("/WEB-INF/views/tourList.jsp").forward(req, resp);
-		
+
 	}
 
 }
