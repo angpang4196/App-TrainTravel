@@ -18,7 +18,7 @@
 				<input type="text" placeholder="아이디를 입력 해 주세요" name="id" class="join-input" required autocomplete="off"/>
 			</div>
 			<div style="margin: 0.4em">
-				<input type="password" placeholder="비밀번호를 입력 해 주세요" name="pass" class="join-input" />
+				<input type="password" placeholder="비밀번호를 입력 해 주세요" name="pass" class="join-input" required/>
 			</div>
 
 			<div style="margin: 0.4em">

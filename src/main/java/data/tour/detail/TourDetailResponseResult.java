@@ -7,11 +7,4 @@ public class TourDetailResponseResult {
 		return response;
 	}
 
-	@Override
-	public String toString() {
-		return "TourDetailResponseResult [response=" + response + "]";
-	}
-	
-	
-
 }

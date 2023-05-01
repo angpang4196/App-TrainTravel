@@ -10,10 +10,11 @@ import java.util.Map;
 
 import com.google.gson.Gson;
 
+import data.tour.detail.TourDetailItem;
 import data.tour.detail.TourDetailResponseResult;
 
 public class TourDetailAPI {
-	public static TourDetailResponseResult getTourDetailResponseResult(String contentid) {
+	public static TourDetailItem getTourDetailItem(String contentid) {
 		try {
 			String target = "http://apis.data.go.kr/B551011/KorService1/detailCommon1";
 
@@ -32,7 +33,6 @@ public class TourDetailAPI {
 
 			String queryString = QueryStringBuilder.build(params);
 			URI uri = new URI(target + "?" + queryString);
-			System.out.println(uri);
 
 			HttpClient client = HttpClient.newHttpClient();
 			HttpRequest request = HttpRequest.newBuilder(uri).GET().build();
@@ -41,8 +41,12 @@ public class TourDetailAPI {
 			Gson gson = new Gson();
 
 			TourDetailResponseResult result = gson.fromJson(response.body(), TourDetailResponseResult.class);
-			System.out.println(result.getResponse().getBody().getItems().getItem() == null ? "ex" : "null");
-			return result;
+			TourDetailItem[] tdi =result.getResponse().getBody().getItems().getItem();
+			System.out.println(tdi[0].getAddr1());
+			System.out.println(tdi[0].getMapx());
+			System.out.println(tdi[0].getMapy());
+			
+			return tdi[0];
 
 		} catch (Exception e) {
 			e.printStackTrace();
