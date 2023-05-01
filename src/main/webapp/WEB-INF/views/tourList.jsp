@@ -8,14 +8,18 @@
 <title>List of Tourist Attractions</title>
 </head>
 <body>
-	<div class="container">
+	<div style="display: flex">
 		<h1>관광 명소 리스트</h1>
 		<c:forEach items="${tsi}" var="t">
-			<div class="attraction">
-				<h2>${t.title}</h2>
-				<div class="photo">
-					<a href="/detail?contentId=${t.contentid}"><img
-						src="${t.firstimage}" /></a>
+			<div>
+				<h3>
+					<a href="/detail?contentId=${t.contentid}">${t.title}</a>
+				</h3>
+				<div>
+					<img src="${t.firstimage}" />
+				</div>
+				<div>
+					<p>주소 : ${t.addr1 }</p>
 				</div>
 			</div>
 		</c:forEach>

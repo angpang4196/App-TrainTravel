@@ -32,10 +32,4 @@ public class TourDetailItem {
 		return firstimage;
 	}
 
-	@Override
-	public String toString() {
-		return "TourDetailItem [title=" + title + ", addr1=" + addr1 + ", mapx=" + mapx + ", mapy=" + mapy
-				+ ", overview=" + overview + ", firstimage=" + firstimage + "]";
-	}
-
 }
