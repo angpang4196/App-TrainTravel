@@ -18,42 +18,40 @@ import data.User;
 import data.destination.Destination;
 import data.statuses.Status;
 import data.tour.detail.TourDetailItem;
-import data.tour.detail.TourDetailResponseResult;
-import data.tour.summary.TourSummaryResponseResult;
 import util.TourDetailAPI;
 
-@WebServlet("/detail")
-public class TourDetailController extends HttpServlet {
+@WebServlet("/like")
+public class LikeController extends HttpServlet {
 
 	@Override
 	protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-
 		SqlSessionFactory factory = (SqlSessionFactory) req.getServletContext().getAttribute("sqlSessionFactory");
 		SqlSession sqlSession = factory.openSession();
+
 		HttpSession session = req.getSession();
 		User user = (User) session.getAttribute("logonUser");
 		String userId = user.getId();
+		System.out.println(userId);
 
-		String contentId = req.getParameter("contentId");
+		String contentId = req.getParameter("contentid");
+		System.out.println(contentId);
 		Map<String, String> map = new HashMap<>();
 
 		map.put("userId", userId);
 		map.put("contentId", contentId);
-		
+
 		Status status = sqlSession.selectOne("statuses.statusCheck", contentId);
-		
+      
 		if (status == null) {
-			
-			 req.setAttribute("status", 0);
-		
+			 sqlSession.insert("statuses.status", map);
+			 sqlSession.update("destination.updateLikes", contentId);
 
 		} else{
 			req.setAttribute("status", status.getStatus());
 		
 
 		}
-		
-		
+
 		Destination dt = sqlSession.selectOne("destination.findById", contentId);
 		if (dt == null) {
 
@@ -72,6 +70,7 @@ public class TourDetailController extends HttpServlet {
 		req.setAttribute("detail", tdi);
 
 		req.getRequestDispatcher("/WEB-INF/views/detail.jsp").forward(req, resp);
+
 	}
 
 }

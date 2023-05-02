@@ -6,14 +6,33 @@
 <head>
 <meta charset="UTF-8">
 <title>회원 가입 페이지</title>
+<link rel="stylesheet" href="/resource/css/join.css" />
 </head>
 <body>
-	<div>
-		<form action="/join-task" method="POST">
-			아이디 <input type="text" name="id" /> 
-			비밀번호 <input type="password" name="pass" />
-			<button type="submit">전송</button>
-		</form>
-	</div>
+	<div class="container right-panel-active">
+ 
+
+  <!-- Sign In -->
+  <div class="container__form container--signin">
+    <form action="/join-task" class="form" id="form2">
+      <h2 class="form__title">Sign Up</h2>
+      <input type="text" placeholder="UserId" class="input" name="id"/>
+      <input type="password" placeholder="Password" class="input" name="pass"/>
+       <button class="btn" type="submit" >Sign Up</button>
+    </form>
+  </div>
+
+  <!-- Overlay -->
+  <div class="container__overlay">
+    <div class="overlay">
+      <div class="overlay__panel overlay--left">
+        <button class="btn"  id="signIn">SignUp is required</button>
+      </div>
+      <div class="overlay__panel overlay--right">
+        <button class="btn" id="signUp">Sign Up</button>
+      </div>
+    </div>
+  </div>
+</div>
 </body>
 </html>

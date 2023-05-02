@@ -23,7 +23,10 @@
 	<mappers>
 		<mapper resource="mybatis/mapper/users-mapper.xml" />
 		<mapper resource="mybatis/mapper/areas-mapper.xml" />
-		<mapper resource="mybatis/mapper/reviews-mapper.xml" />
+		
+		<mapper resource="mybatis/mapper/destination-mapper.xml" />
+		<mapper resource="mybatis/mapper/statuses-mapper.xml" />
+		
 	</mappers>
 
 </configuration>
