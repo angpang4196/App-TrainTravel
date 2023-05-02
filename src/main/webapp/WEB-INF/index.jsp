@@ -20,7 +20,6 @@
 			<div style="margin: 0.4em">
 				<input type="password" placeholder="비밀번호를 입력 해 주세요" name="pass" class="join-input" required/>
 			</div>
-
 			<div style="margin: 0.4em">
 				<button type="submit" class="join-btn">로그인</button>
 			</div>
@@ -31,7 +30,7 @@
 			</p>
 			<p style="flex: 0.1; color: white">
 			<b>아직 계정이 없으신가요? <a href="/join">회원가입</a></b>
-		</p>
+			</p>
 		</form>	
 	</div>
 </body>
