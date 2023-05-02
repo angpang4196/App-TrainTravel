@@ -28,7 +28,7 @@ public class TrainInfoController extends HttpServlet {
 		String[] arrInfos = arrInfo.split("&");
 		String arrCode = arrInfos[0];
 		String arrName = arrInfos[1];
-		
+
 		String depPlaceId = req.getParameter("dep");
 		String arrPlaceId = req.getParameter("arr");
 		String depPlandTime = req.getParameter("depPlandTime");
@@ -41,6 +41,8 @@ public class TrainInfoController extends HttpServlet {
 		System.out.println(arrName);
 
 		TrainResponseResult tr = TrainAPI.getTrainResponseResult(depPlaceId, arrPlaceId, depPlandTime);
+		int totalCount = tr.getResponse().getBody().getTotalCount();
+		tr = TrainAPI.getTrainResponseResult(depPlaceId, arrPlaceId, depPlandTime, totalCount);
 
 		CodeItem[] ci = CodeAPI.getCodeResponseResult().getResponse().getBody().getItems().getItems();
 		StationItem[] si = StationAPI.getStationResponseResult("1").getResponse().getBody().getItems().getItem();
@@ -53,6 +55,7 @@ public class TrainInfoController extends HttpServlet {
 			req.getRequestDispatcher("/WEB-INF/views/trainList.jsp").forward(req, resp);
 		} else {
 			TrainItem[] ti = tr.getResponse().getBody().getItems().getItem();
+
 			req.setAttribute("ti", ti);
 			req.setAttribute("arrName", arrName);
 

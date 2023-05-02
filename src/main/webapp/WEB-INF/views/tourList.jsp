@@ -6,25 +6,56 @@
 <head>
 <meta charset="UTF-8">
 <title>List of Tourist Attractions</title>
+<style>
+* {
+	box-sizing: border-box;
+}
+
+a {
+	text-decoration: none;
+}
+</style>
 </head>
 <body>
-	<div style="display: flex">
-		<h1>관광 명소 리스트</h1>
-		<c:forEach items="${tsi}" var="t">
-			<div>
-				<h3>
-					<a href="/detail?contentId=${t.contentid}">${t.title}</a>
-				</h3>
-				<div>
-					<img src="${t.firstimage}" />
+	<div style="width: 960px; margin: auto;">
+		<h1 style="text-align: center;">관광 명소 리스트</h1>
+		<div style="display: flex; width: 100%; flex-wrap: wrap;">
+			<c:forEach items="${tsi}" var="t">
+				<div
+					style="width: 33.33%; display: flex; flex-direction: column; padding: 4px;">
+					<h2>
+						<a href="/detail?contentId=${t.contentid}">${t.title}</a>
+					</h2>
+					<div style="height: 200px;">
+						<img style="width: 100%; height: 100%; object-fit: cover"
+							src="${empty t.firstimage ? '/resource/img/noimg.gif' : t.firstimage }" />
+					</div>
+					<div>
+						<p style="text-overflow: ellipsis;">주소 : ${t.addr1 }</p>
+					</div>
 				</div>
-				<div>
-					<p>주소 : ${t.addr1 }</p>
-				</div>
-			</div>
-		</c:forEach>
-		
-		
+			</c:forEach>
+		</div>
+		<div style="text-align: center;">
+			<c:url value="/summary?area=${area }&" var="target">
+			</c:url>
+			<c:if test="${existPrev }">
+				<a href="${target }page=${start-1 }">←</a>
+			</c:if>
+			<c:forEach var="p" begin="${start }" end="${last }">
+				<c:choose>
+					<c:when test="${p eq param.page }">
+						<span style="color: green; font-size: 18px">${p }</span>
+					</c:when>
+					<c:otherwise>
+						<a href="${target }page=${p }">${p }</a>
+					</c:otherwise>
+				</c:choose>
+			</c:forEach>
+			<c:if test="${existNext }">
+				<a href="${target }page=${last+1 }">→</a>
+			</c:if>
+		</div>
 	</div>
 </body>
 </html>

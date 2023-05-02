@@ -12,12 +12,17 @@
 body {
 	margin: 0;
 	height: 100vh;
-	background: url(/resource/img/기차2.jpg) no-repeat center;
+	background: url(/resource/img/scenic-view-of-a-railway-to-tunnel-through-the-green-covered-rocks.jpg) no-repeat center;
 	background-size: cover;
 }
 
 a {
 	text-decoration: none;
+	color:black;
+}
+a:hover{
+	text-decoration: none;
+	color:red;
 }
 
 input, textarea, button, select {
@@ -66,4 +71,13 @@ input, textarea, button, select {
 	font-size: 1.1em;
 	padding: 4px;
 	text-align: center;
+}
+
+.post{
+	display: flex;
+	flex-direction: column;
+	text-align: center;
+	border:2px solid black;
+	width: 500px;
+	
 }

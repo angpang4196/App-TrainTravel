@@ -8,12 +8,11 @@
 <title>해당 관광지 상세 정보 페이지</title>
 </head>
 <body>
-
 	${detail.title }
-
 	<img src="${detail.firstimage }" />
 
-	<form action="/mapAndReview?contentid=${requestScope.contentid }"method="post">
+	<form action="/mapAndReview?contentid=${requestScope.contentid }"
+		method="post">
 		<input type="hidden" name="mapx" value="${detail.mapx }" /> <input
 			type="hidden" name="mapy" value="${detail.mapy }" />
 		<button type="submit">지도 및 후기 작성하기</button>
