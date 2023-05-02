@@ -12,7 +12,7 @@ import data.tour.summary.TourSummaryResponseResult;
 
 public class TourSummaryAPI {
 
-	public static TourSummaryResponseResult getTourSummaryResponseResult(String code) {
+	public static TourSummaryResponseResult getTourSummaryResponseResult(String code, String paramPage) {
 
 		try {
 			String target = "http://apis.data.go.kr/B551011/KorService1/areaBasedList1";
@@ -21,6 +21,8 @@ public class TourSummaryAPI {
 			params.put("serviceKey",
 					"SeTtVLG3NcocSbzkF4EhdHQJAj8xemMsODPSqFQEaeW2INI7Mbj7FqIvchikdNkajvkkxqRU8oc6y9XLOx0nCg%3D%3D");
 			params.put("_type", "json");
+			params.put("pageNo", paramPage);
+			params.put("numOfRows", "12");
 			params.put("MobileOS", "ETC");
 			params.put("MobileApp", "AppTest");
 			params.put("areaCode", code);
