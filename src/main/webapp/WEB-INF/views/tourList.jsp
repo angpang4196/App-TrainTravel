@@ -7,11 +7,11 @@
 <meta charset="UTF-8">
 <title>List of Tourist Attractions</title>
 <style>
-*{
- box-sizing: border-box;
- 
+* {
+	box-sizing: border-box;
 }
-a{
+
+a {
 	text-decoration: none;
 }
 </style>
@@ -19,12 +19,16 @@ a{
 <body>
 	<div style="width: 960px; margin: auto;">
 		<h1 style="text-align: center;">관광 명소 리스트</h1>
-		<div style="display: flex; width: 100%; flex-wrap: wrap; ">
+		<div style="display: flex; width: 100%; flex-wrap: wrap;">
 			<c:forEach items="${tsi}" var="t">
-				<div style="width: 33.33%; display: flex; flex-direction: column;padding: 4px;">
-					<h2><a href="/detail?contentId=${t.contentid}">${t.title}</a></h2>
-					<div style="height: 200px; ">
-						<img style="width:100%; height:100%; object-fit:cover" src="${empty t.firstimage ? '/resource/img/noimg.gif' : t.firstimage }" />
+				<div
+					style="width: 33.33%; display: flex; flex-direction: column; padding: 4px;">
+					<h2>
+						<a href="/detail?contentId=${t.contentid}">${t.title}</a>
+					</h2>
+					<div style="height: 200px;">
+						<img style="width: 100%; height: 100%; object-fit: cover"
+							src="${empty t.firstimage ? '/resource/img/noimg.gif' : t.firstimage }" />
 					</div>
 					<div>
 						<p style="text-overflow: ellipsis;">주소 : ${t.addr1 }</p>

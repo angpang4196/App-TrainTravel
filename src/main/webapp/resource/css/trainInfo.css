@@ -1,0 +1,61 @@
+@charset "EUC-KR";
+
+
+/* 출발지, 도착지 선택 폼 */
+div {
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+	justify-content: center;
+	margin: 50px 0;
+}
+
+select {
+	padding: 10px;
+	border: none;
+	border-radius: 5px;
+	box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+	font-size: 16px;
+	color: #555;
+	background-color: #fff;
+	cursor: pointer;
+}
+
+select:first-child {
+	width: 200px;
+	margin-right: 20px;
+}
+
+/* 날짜 선택 폼 */
+input[type="date"] {
+	padding: 10px;
+	border: none;
+	border-radius: 5px;
+	box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+	font-size: 16px;
+	color: #555;
+	background-color: #fff;
+	margin-left: 20px;
+}
+
+/* 버튼 */
+button[type="submit"] {
+	padding: 10px;
+	border: none;
+	border-radius: 5px;
+	box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+	font-size: 16px;
+	color: #fff;
+	background-color: #007bff;
+	cursor: pointer;
+	justify-content: center;
+	align-items: center;
+	margin-left: 45%;
+}
+
+/* 에러 메시지 */
+p {
+	margin-top: 20px;
+	font-size: 14px;
+	color: red;
+}
