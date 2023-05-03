@@ -24,22 +24,21 @@
 			<p>주소 : ${detail.addr1 }</p>
 			<p>상세 정보 : ${detail.overview }</p>
 		</div>
-		<form action="/mapAndReview?contentid=${requestScope.contentid }"
-			method="post">
-			<input type="hidden" name="mapx" value="${detail.mapx }" /> <input
-				type="hidden" name="mapy" value="${detail.mapy }" />
+		<form action="/mapAndReview?contentId=${requestScope.contentid }&cityname=${cityname}" method="post">
+			<input type="hidden" name="mapx" value="${detail.mapx }" /> 
+				<input type="hidden" name="mapy" value="${detail.mapy }" />
 			<button type="submit">지도 및 후기 작성하기</button>
 		</form>
+		<a href="/summary?area=${cityname }">관광지 리스트</a>
 		<c:choose>
 			<c:when test="${status eq '0' }">
-				<form action="/like?contentid=${requestScope.contentid }"
-					method="post">
+				<form action="/like?contentid=${requestScope.contentid }" method="post">
 					<button type="submit">좋아요</button>
 				</form>
 			</c:when>
 			<c:otherwise>
-				<p>추천은 한번만 가능합니다</p>
-			</c:otherwise>
+	      		<p>추천은 한번만 가능합니다</p>
+	    	</c:otherwise>
 		</c:choose>
 	</div>
 </body>

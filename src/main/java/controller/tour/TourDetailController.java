@@ -31,6 +31,9 @@ public class TourDetailController extends HttpServlet {
 		SqlSessionFactory factory = (SqlSessionFactory) req.getServletContext().getAttribute("sqlSessionFactory");
 		SqlSession sqlSession = factory.openSession();
 		HttpSession session = req.getSession();
+        
+		String cityname =req.getParameter("cityname");
+		req.setAttribute("cityname", cityname);
 		User user = (User) session.getAttribute("logonUser");
 		String userId = user.getId();
 
@@ -39,21 +42,18 @@ public class TourDetailController extends HttpServlet {
 
 		map.put("userId", userId);
 		map.put("contentId", contentId);
-		
-		Status status = sqlSession.selectOne("statuses.statusCheck", contentId);
-		
-		if (status == null) {
-			
-			 req.setAttribute("status", 0);
-		
 
-		} else{
+		Status status = sqlSession.selectOne("statuses.statusCheck", contentId);
+
+		if (status == null) {
+
+			req.setAttribute("status", 0);
+
+		} else {
 			req.setAttribute("status", status.getStatus());
-		
 
 		}
-		
-		
+
 		Destination dt = sqlSession.selectOne("destination.findById", contentId);
 		if (dt == null) {
 

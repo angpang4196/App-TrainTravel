@@ -24,5 +24,6 @@
 		<mapper resource="mybatis/mapper/areas-mapper.xml" />
 		<mapper resource="mybatis/mapper/destination-mapper.xml" />
 		<mapper resource="mybatis/mapper/statuses-mapper.xml" />
+		<mapper resource="mybatis/mapper/replys-mapper.xml" />
 	</mappers>
 </configuration>

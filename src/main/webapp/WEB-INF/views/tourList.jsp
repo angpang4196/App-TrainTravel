@@ -24,7 +24,7 @@ a {
 				<div
 					style="width: 33.33%; display: flex; flex-direction: column; padding: 4px;">
 					<h2>
-						<a href="/detail?contentId=${t.contentid}">${t.title}</a>
+						<a href="/detail?contentId=${t.contentid}&cityname=${cityname }">${t.title}</a>
 					</h2>
 					<div style="height: 200px;">
 						<img style="width: 100%; height: 100%; object-fit: cover"

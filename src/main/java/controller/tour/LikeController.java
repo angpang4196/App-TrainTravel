@@ -26,41 +26,34 @@ public class LikeController extends HttpServlet {
 	@Override
 	protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		SqlSessionFactory factory = (SqlSessionFactory) req.getServletContext().getAttribute("sqlSessionFactory");
-		SqlSession sqlSession = factory.openSession();
+		SqlSession sqlSession = factory.openSession(true);
 
 		HttpSession session = req.getSession();
 		User user = (User) session.getAttribute("logonUser");
 		String userId = user.getId();
-		System.out.println(userId);
 
 		String contentId = req.getParameter("contentid");
-		System.out.println(contentId);
+		
 		Map<String, String> map = new HashMap<>();
-
 		map.put("userId", userId);
 		map.put("contentId", contentId);
 
 		Status status = sqlSession.selectOne("statuses.statusCheck", contentId);
-      
+
 		if (status == null) {
-			 sqlSession.insert("statuses.status", map);
-			 sqlSession.update("destination.updateLikes", contentId);
-
-		} else{
+			sqlSession.insert("statuses.status", map);
+			sqlSession.update("destination.updateLikes", contentId);
+		} else {
 			req.setAttribute("status", status.getStatus());
-		
-
 		}
 
 		Destination dt = sqlSession.selectOne("destination.findById", contentId);
+		
 		if (dt == null) {
-
 			sqlSession.insert("destination.createDestination", contentId);
 		}
-
+		
 		sqlSession.update("destination.updateViews", contentId);
-
-		sqlSession.commit();
 
 		sqlSession.close();
 
@@ -70,7 +63,6 @@ public class LikeController extends HttpServlet {
 		req.setAttribute("detail", tdi);
 
 		req.getRequestDispatcher("/WEB-INF/views/detail.jsp").forward(req, resp);
-
 	}
 
 }
