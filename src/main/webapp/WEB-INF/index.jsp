@@ -13,7 +13,7 @@
 	<div class="container right-panel-active">
 		<!-- Sign In -->
 		<div class="container__form container--signin">
-			<form action="/login-task" class="form" id="form2">
+			<form action="/login-task" class="form" id="form2" method="post">
 				<h2 class="form__title">Sign In</h2>
 				<input type="text" placeholder="UserId" class="input" name="id" />
 				<input type="password" placeholder="Password" class="input"

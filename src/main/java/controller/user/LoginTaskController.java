@@ -40,12 +40,7 @@ public class LoginTaskController extends HttpServlet {
 				session.setAttribute("logon", true);
 				session.setAttribute("logonUser", user);
 				
-				CodeItem[] ci = CodeAPI.getCodeResponseResult().getResponse().getBody().getItems().getItems();
-				StationItem[] si = StationAPI.getStationResponseResult("1").getResponse().getBody().getItems().getItem();
-
-				req.setAttribute("ci", ci);
-				req.setAttribute("si", si);
-				req.getRequestDispatcher("/WEB-INF/views/trainList.jsp").forward(req, resp);
+				resp.sendRedirect("/trainList");
 			} else {
 				resp.sendRedirect("/index?cause=error");
 			}

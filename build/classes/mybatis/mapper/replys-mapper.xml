@@ -6,14 +6,10 @@
 	<select id="findById" resultType="data.Reply" parameterType="string">
 		select * from reviews where id = #{id}
 	</select>
-	
 	<insert id="createReply" parameterType="hashmap">
 		insert into reviews(ID,TITLE,WRITER,CONTENT) values(#{id}, #{title},#{writer},#{content})
 	</insert>
-	
 	<update id="updateViews">
 		update reviews set views = views + 1 where Id = #{boardId}
 	</update>
-	
-	
 </mapper>
