@@ -8,13 +8,11 @@
 		(select * from reviews where contentId = #{contentId} order by writed desc)
 		where rownum &lt;= 10
 	</select>
-
 	<insert id="createReply" parameterType="hashmap">
 		insert into
 		reviews(ID,WRITER,CONTENT,CONTENTID)
 		values(SEQ_REVIEW.NEXTVAL,#{writer},#{content},#{contentId})
 	</insert>
-
 	<update id="updateViews">
 		update reviews set views = views + 1 where Id =
 		#{boardId}

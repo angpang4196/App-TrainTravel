@@ -42,8 +42,6 @@ public class TrainInfoController extends HttpServlet {
 		System.out.println(arrName);
 
 		TrainResponseResult tr = TrainAPI.getTrainResponseResult(depPlaceId, arrPlaceId, depPlandTime);
-		int totalCount = tr.getResponse().getBody().getTotalCount();
-		tr = TrainAPI.getTrainResponseResult(depPlaceId, arrPlaceId, depPlandTime, totalCount);
 
 		CodeItem[] ci = CodeAPI.getCodeResponseResult().getResponse().getBody().getItems().getItems();
 		StationItem[] si = StationAPI.getStationResponseResult("1").getResponse().getBody().getItems().getItem();
@@ -55,6 +53,8 @@ public class TrainInfoController extends HttpServlet {
 			req.setAttribute("cause", "notData");
 			req.getRequestDispatcher("/WEB-INF/views/trainList.jsp").forward(req, resp);
 		} else {
+			int totalCount = tr.getResponse().getBody().getTotalCount();
+			tr = TrainAPI.getTrainResponseResult(depPlaceId, arrPlaceId, depPlandTime, totalCount);
 			TrainItem[] ti = tr.getResponse().getBody().getItems().getItem();
 
 			req.setAttribute("ti", ti);

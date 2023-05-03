@@ -11,7 +11,6 @@
 </head>
 <body>
 	<div class="container right-panel-active">
-		<!-- Sign In -->
 		<div class="container__form container--signin">
 			<form action="/login-task" method="post" class="form" id="form2">
 				<h2 class="form__title">Sign In</h2>
@@ -26,7 +25,6 @@
 			 	</p>
 			</form>
 		</div>
-		<!-- Overlay -->
 		<div class="container__overlay">
 			<div class="overlay">
 				<div class="overlay__panel overlay--left">
@@ -37,5 +35,6 @@
 				</div>
 			</div>
 		</div>
+	</div>
 </body>
 </html>
