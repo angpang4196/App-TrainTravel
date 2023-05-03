@@ -23,7 +23,7 @@
 			<div style="margin: 0.4em">
 				<button type="submit" class="join-btn">로그인</button>
 			</div>
-			<p>
+			<p style="color: red">
 				<c:if test="${param.cause eq 'error' }">
 					아이디 또는 비밀번호가 틀렸습니다
 				</c:if>
