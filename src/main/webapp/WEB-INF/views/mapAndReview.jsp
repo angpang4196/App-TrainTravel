@@ -17,7 +17,7 @@
 	<%-- 후기 작성 영역 --%>
 	<div>
 		<form action="/reply-task?contentid=${contentid }" method="POST">
-			title : <input type="text" name="title" /> content :
+			 content :
 			<textarea name="content" style="width: 80%; resize: none"></textarea>
 			<button type="submit">댓글 등록</button>
 		</form>

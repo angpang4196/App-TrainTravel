@@ -29,25 +29,24 @@ public class TourReviewTaskController extends HttpServlet {
 
 		req.setCharacterEncoding("utf-8");
 
-		String id = req.getParameter("contentId");
+		String contentId = req.getParameter("contentId");
 
-		String title = req.getParameter("title");
-
+	
 		HttpSession session = req.getSession();
 		User user = (User) session.getAttribute("logonUser");
 		String writer = user.getId();
 
 		String content = req.getParameter("content");
-		System.out.println(id);
+		System.out.println(contentId);
 		System.out.println(writer);
 		System.out.println(content);
 
 		Map<String, String> map = new HashMap<>();
 
-		map.put("id", id);
+		map.put("contentId", contentId);
 		map.put("writer", writer);
 		map.put("content", content);
-		map.put("title", title);
+	
 		sqlSession.insert("replys.createReply", map);
 		sqlSession.commit();
 		sqlSession.close();
