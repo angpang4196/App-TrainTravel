@@ -7,24 +7,33 @@
 <title>지도 제공 및 후기 작성 페이지</title>
 </head>
 <body>
-	<%-- 주소 및 지도 영역 --%>
-	<div>
-		<p>관광지 ID : ${contentid }
-		<p>주소 : ${tdi.addr1 }</p>
+	<div style="display: flex">
+		<div style="flex: 7; justify-content: center; align-items: center; display: grid;">
+			<%-- 주소 및 지도 영역 --%>
+			<div>
+				<p>관광지 ID : ${contentid }
+				<p>주소 : ${tdi.addr1 }</p>
+			</div>
+			<div id="map" style="width: 500px; height: 400px;">지도 데이터를 불러오고
+				있습니다.
+			</div>
+			<%-- 길 찾기 바로가기 --%>
+			<div>
+				<a href="https://map.kakao.com/link/to/${tdi.title }, ${tdi.mapy }, ${tdi.mapx}">길 찾기</a>
+			</div>
+		</div>
+		<%-- 후기 작성 영역 --%>
+		<div style="flex:3">
+			<form action="/reply-task?contentid=${contentid }" method="POST">
+				content :
+				<textarea name="content" style="width: 80%; resize: none"></textarea>
+				<button type="submit">댓글 등록</button>
+			</form>
+		</div>
 	</div>
-	<div id="map" style="width: 500px; height: 400px;">지도 데이터를 불러오고
-		있습니다.</div>
-	<%-- 후기 작성 영역 --%>
-	<div>
-		<form action="/reply-task?contentid=${contentid }" method="POST">
-			title : <input type="text" name="title" /> content :
-			<textarea name="content" style="width: 80%; resize: none"></textarea>
-			<button type="submit">댓글 등록</button>
-		</form>
-	</div>
-
+	
 	<script type="text/javascript"
-		src="//dapi.kakao.com/v2/maps/sdk.js?appkey=22c8baafdc9ecfd56bb68920f8b15e6d"></script>
+		src="//dapi.kakao.com/v2/maps/sdk.js?appkey=fa50ba81310359fa007dce1d4eb86753"></script>
 	<script>
 		var container = document.getElementById('map');
 		var options = {
