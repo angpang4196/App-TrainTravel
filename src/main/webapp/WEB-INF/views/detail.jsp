@@ -11,12 +11,14 @@
 	${detail.title }
 	<img src="${detail.firstimage }" />
 
-	<form action="/mapAndReview?contentId=${requestScope.contentid }"
-		method="get">
+	<form action="/mapAndReview?contentId=${requestScope.contentid }&cityname=${cityname}"
+		method="post">
 		<input type="hidden" name="mapx" value="${detail.mapx }" /> <input
 			type="hidden" name="mapy" value="${detail.mapy }" />
+			
 		<button type="submit">지도 및 후기 작성하기</button>
 	</form>
+	<a href="/summary?area=${cityname }">관광지 리스트</a>
 	<c:choose>
 		<c:when test="${status eq '0' }">
 			<form action="/like?contentid=${requestScope.contentid }"

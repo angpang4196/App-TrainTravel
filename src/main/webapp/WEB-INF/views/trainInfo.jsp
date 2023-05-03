@@ -12,10 +12,10 @@
 </head>
 <body>
 	<div>
-		
+		<a href="/summary?area=${arrName}">${arrName } 관광정보 보기</a>
 	</div>
 	<div>
-		<a href="/summary?area=${arrName}">${arrName } 관광정보 보기</a>
+		<a href="https://www.letskorail.com/">예매하기</a>
 	</div>
 	<div>
 		<table>

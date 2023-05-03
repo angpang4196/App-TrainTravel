@@ -1,6 +1,7 @@
 package controller.tour;
 
 import java.io.IOException;
+import java.net.URLEncoder;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.UUID;
@@ -25,34 +26,31 @@ public class TourReviewTaskController extends HttpServlet {
 	@Override
 	protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		SqlSessionFactory factory = (SqlSessionFactory) req.getServletContext().getAttribute("sqlSessionFactory");
-		SqlSession sqlSession = factory.openSession();
+		SqlSession sqlSession = factory.openSession(true);
 
 		req.setCharacterEncoding("utf-8");
 
+		String cityname = req.getParameter("cityname");
+
 		String contentId = req.getParameter("contentId");
 
-	
 		HttpSession session = req.getSession();
 		User user = (User) session.getAttribute("logonUser");
 		String writer = user.getId();
 
 		String content = req.getParameter("content");
-		System.out.println(contentId);
-		System.out.println(writer);
-		System.out.println(content);
 
 		Map<String, String> map = new HashMap<>();
-
 		map.put("contentId", contentId);
 		map.put("writer", writer);
 		map.put("content", content);
-	
+
 		sqlSession.insert("replys.createReply", map);
-		sqlSession.commit();
 		sqlSession.close();
+
+		//resp.sendRedirect("/summary?area=" + URLEncoder.encode(cityname,"utf-8"));
+		resp.sendRedirect("/mapAndReview?contentId="+contentId);
 		
-		Gson gson =new Gson();
-		resp.setContentType("text/plain;charset=utf-8");
 
 	}
 

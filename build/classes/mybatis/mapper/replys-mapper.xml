@@ -4,16 +4,19 @@
   "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="replys">
 	<select id="findById" resultType="data.Review" parameterType="string">
-		select * from reviews where id = #{id}
+		select * from
+		(select * from reviews where contentId = #{contentId} order by writed desc)
+		where rownum &lt;= 10
 	</select>
-	
+
 	<insert id="createReply" parameterType="hashmap">
-		insert into reviews(ID,WRITER,CONTENT,CONTENTID) values(SEQ_REVIEW.NEXTVAL,#{writer},#{content},#{contentId})
+		insert into
+		reviews(ID,WRITER,CONTENT,CONTENTID)
+		values(SEQ_REVIEW.NEXTVAL,#{writer},#{content},#{contentId})
 	</insert>
-	
+
 	<update id="updateViews">
-		update reviews set views = views + 1 where Id = #{boardId}
+		update reviews set views = views + 1 where Id =
+		#{boardId}
 	</update>
-	
-	
 </mapper>

@@ -23,6 +23,7 @@ public class TourCodeController extends HttpServlet {
 	protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
 		String cityname = req.getParameter("area");
+		req.setAttribute("cityname", cityname);
 
 		String paramPage = req.getParameter("page");
 		int p;

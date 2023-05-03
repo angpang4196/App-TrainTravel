@@ -28,6 +28,7 @@ public class TrainInfoController extends HttpServlet {
 		String[] arrInfos = arrInfo.split("&");
 		String arrCode = arrInfos[0];
 		String arrName = arrInfos[1];
+		req.setAttribute("arrName", arrName);
 
 		String depPlaceId = req.getParameter("dep");
 		String arrPlaceId = req.getParameter("arr");
