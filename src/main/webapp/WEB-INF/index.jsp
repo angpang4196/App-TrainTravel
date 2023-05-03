@@ -15,10 +15,15 @@
 		<div class="container__form container--signin">
 			<form action="/login-task" class="form" id="form2">
 				<h2 class="form__title">Sign In</h2>
-				<input type="text" placeholder="UserId" class="input" name="id" /> <input
-					type="password" placeholder="Password" class="input" name="pass" />
-				<a href="/join" class="link">Sign up</a>
+				<input type="text" placeholder="UserId" class="input" name="id" />
+				<input type="password" placeholder="Password" class="input"
+					name="pass" /> <a href="/join" class="link">Sign up</a>
 				<button class="btn">Sign In</button>
+				<p style="color: red">
+					<c:if test="${param.cause eq 'error' }">
+					아이디 또는 비밀번호가 틀렸습니다
+				</c:if>
+				</p>
 			</form>
 		</div>
 		<!-- Overlay -->
@@ -32,6 +37,5 @@
 				</div>
 			</div>
 		</div>
-	</div>
 </body>
 </html>
