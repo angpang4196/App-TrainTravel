@@ -36,7 +36,6 @@ public class MessageAPI extends HttpServlet {
 		PrintWriter out = resp.getWriter();
 
 		out.print(gson.toJson(list));
-
 	}
 
 }
