@@ -18,10 +18,20 @@ a {
 </head>
 <body>
 	<div style="width: 960px; margin: auto;">
-		<c:forEach items="${cateAll }" var="one">
-			<a href="/summary?cate=${one.type }&area=${area}">${one.type }</a>
-		</c:forEach>
-		<h1 style="text-align: center;">${requestScope.cate } 리스트</h1>
+		<div>
+			<c:forEach items="${cateAll }" var="one">
+				<a href="/summary?cate=${one.type }&area=${area}">${one.type }</a>
+			</c:forEach>
+		</div>
+		<div>
+			<form action="/searchDetail?cityname=${cityname }" method="POST">
+				<input type="text" style="padding:4px; width: 220px;" id="search" list="qlist" autocomplete="off" name="contentName"/><span id="rst"></span>
+				<datalist id="qlist">
+				</datalist>
+				<button type="submit">Search</button>
+			</form>
+		</div>
+		<h1 style="text-align: center;">${area } ${requestScope.cate } 리스트</h1>
 		<div style="display: flex; width: 100%; flex-wrap: wrap;">
 			<c:forEach items="${tsi}" var="t">
 				<div
@@ -60,5 +70,23 @@ a {
 			</c:if>
 		</div>
 	</div>
+	
+	<script>
+		document.querySelector("#search").onkeyup = function(evt) {
+			const xhr = new XMLHttpRequest();
+			xhr.open("get","/api/search?cityname=${area}&q=" + evt.target.value, true);
+			xhr.send();
+			xhr.onreadystatechange = function() {
+				if(this.readyState === 4) {
+					const txt = this.responseText;
+					const obj = JSON.parse(txt);
+					const cvt = obj.map(function(e) { 
+						return "<option>" + e + "</option>";
+					});
+					document.querySelector("#qlist").innerHTML = cvt.join("");
+				}
+			}
+		}
+	</script>
 </body>
 </html>

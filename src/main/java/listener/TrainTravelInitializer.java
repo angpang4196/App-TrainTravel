@@ -25,7 +25,6 @@ public class TrainTravelInitializer implements ServletContextListener {
 			SqlSessionFactory sqlSessionFactory = new SqlSessionFactoryBuilder().build(inputStream);
 
 			sce.getServletContext().setAttribute("sqlSessionFactory", sqlSessionFactory);
-
 		} catch (Exception e) {
 			e.printStackTrace();
 			System.exit(0);

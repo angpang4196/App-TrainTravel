@@ -42,9 +42,6 @@ public class TourDetailAPI {
 
 			TourDetailResponseResult result = gson.fromJson(response.body(), TourDetailResponseResult.class);
 			TourDetailItem[] tdi =result.getResponse().getBody().getItems().getItem();
-			System.out.println(tdi[0].getAddr1());
-			System.out.println(tdi[0].getMapx());
-			System.out.println(tdi[0].getMapy());
 			
 			return tdi[0];
 
