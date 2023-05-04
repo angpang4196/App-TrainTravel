@@ -18,7 +18,10 @@ a {
 </head>
 <body>
 	<div style="width: 960px; margin: auto;">
-		<h1 style="text-align: center;">관광 명소 리스트</h1>
+		<c:forEach items="${cateAll }" var="one">
+			<a href="/summary?cate=${one.type }&area=${area}">${one.type }</a>
+		</c:forEach>
+		<h1 style="text-align: center;">${requestScope.cate } 리스트</h1>
 		<div style="display: flex; width: 100%; flex-wrap: wrap;">
 			<c:forEach items="${tsi}" var="t">
 				<div
