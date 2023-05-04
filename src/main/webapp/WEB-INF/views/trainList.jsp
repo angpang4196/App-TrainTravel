@@ -79,12 +79,15 @@ button[type="submit"]:hover {
 			</div>
 			<div
 				style="display: flex; justify-content: space-around; padding: 4px; gap: 4px;">
-				<input type="date" name="depPlandTime" style="flex: 1" />
+				<input type="date" name="depPlandTime" style="flex: 1"  id="change"/>
 				<button type="submit" style="flex: 1">열차조회</button>
 			</div>
 			<p>
 				<c:if test="${cause eq 'notData' }">
 					해당 날짜에 배차된 열차 정보가 없습니다.
+				</c:if>
+				<c:if test="${param.error eq 1 }">
+				    모든 항목을 기입해주세요
 				</c:if>
 			</p>
 		</form>

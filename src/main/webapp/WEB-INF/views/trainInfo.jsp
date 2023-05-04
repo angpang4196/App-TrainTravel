@@ -13,6 +13,7 @@
 <body>
 	<div>
 		<a href="https://www.letskorail.com/">예매하기</a>
+		<a href="/lostItem">유실물 찾기</a>
 		<a href="/summary?area=${arrName}" style="text-decoration: none; color: gray; font-size: x-large; text-align: center; align-items: center;">${arrName } 관광정보 보기</a>
 	</div>
 	<div>

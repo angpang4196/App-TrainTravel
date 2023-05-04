@@ -26,5 +26,6 @@
 		<mapper resource="mybatis/mapper/statuses-mapper.xml" />
 		<mapper resource="mybatis/mapper/replys-mapper.xml" />
 		<mapper resource="mybatis/mapper/cates-mapper.xml" />
+		<mapper resource="mybatis/mapper/losts-mapper.xml"/>
 	</mappers>
 </configuration>
