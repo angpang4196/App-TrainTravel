@@ -15,7 +15,15 @@ import data.tour.summary.TourSummaryResponseResult;
 
 public class TourSummaryAPI {
 
-	public static TourSummaryResponseResult getTourSummaryResponseResult(String code, String paramPage,String contentTypeId) {
+	static TourSummaryResponseResult cachedResponseResult = null;
+	static TourSummaryResponseResult ajaxCachedResponseResult = null;
+
+	public static TourSummaryResponseResult getTourSummaryResponseResult(String code, String paramPage,
+			String contentTypeId) {
+
+		if (cachedResponseResult != null) {
+			return cachedResponseResult;
+		}
 
 		try {
 			String target = "http://apis.data.go.kr/B551011/KorService1/areaBasedList1";
@@ -42,7 +50,47 @@ public class TourSummaryAPI {
 			Gson gson = new Gson();
 
 			TourSummaryResponseResult result = gson.fromJson(response.body(), TourSummaryResponseResult.class);
+			cachedResponseResult = result;
+			return result;
 
+		} catch (Exception e) {
+			e.printStackTrace();
+			return null;
+		}
+
+	}
+
+	public static TourSummaryResponseResult getTourSummaryResponseResult(String code) {
+		
+		if (ajaxCachedResponseResult != null) {
+			return ajaxCachedResponseResult;
+		}
+
+		try {
+			String target = "http://apis.data.go.kr/B551011/KorService1/areaBasedList1";
+
+			Map<String, String> params = new LinkedHashMap<>();
+			params.put("serviceKey",
+					"SeTtVLG3NcocSbzkF4EhdHQJAj8xemMsODPSqFQEaeW2INI7Mbj7FqIvchikdNkajvkkxqRU8oc6y9XLOx0nCg%3D%3D");
+			params.put("_type", "json");
+			params.put("numOfRows", "2000");
+			params.put("MobileOS", "ETC");
+			params.put("MobileApp", "AppTest");
+			params.put("areaCode", code);
+			params.put("listYN", "Y");
+
+			String queryString = QueryStringBuilder.build(params);
+			URI uri = new URI(target + "?" + queryString);
+
+			HttpClient client = HttpClient.newHttpClient();
+			HttpRequest request = HttpRequest.newBuilder(uri).GET().build();
+			HttpResponse<String> response = client.send(request, BodyHandlers.ofString());
+
+			Gson gson = new Gson();
+
+			TourSummaryResponseResult result = gson.fromJson(response.body(), TourSummaryResponseResult.class);
+
+			ajaxCachedResponseResult = result;
 			return result;
 
 		} catch (Exception e) {

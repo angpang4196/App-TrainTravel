@@ -32,11 +32,12 @@ public class TourCodeController extends HttpServlet {
 		if (cate == null) {
 			cate = "관광지";
 		}
-		
+
 		req.setAttribute("cate", cate);
 
 		Cate c = sqlSession.selectOne("cates.findByType", cate);
 		String contentTypeId = c.getCode();
+		
 		List<Cate> li = sqlSession.selectList("cates.findAll");
 		req.setAttribute("cateAll", li);
 
@@ -50,8 +51,6 @@ public class TourCodeController extends HttpServlet {
 		} else {
 			p = Integer.parseInt(paramPage);
 		}
-
-		System.out.println(cityname);
 		Area area = sqlSession.selectOne("areas.findByName", cityname);
 		String code = area.getCode();
 
@@ -59,7 +58,6 @@ public class TourCodeController extends HttpServlet {
 		TourSummaryItem[] tsi = tsr.getResponse().getBody().getItems().getItem();
 
 		int total = tsr.getResponse().getBody().getTotalCount();
-		int page = total / 10 + (total % 10 > 0 ? 1 : 0);
 
 		int lastPage = total / 6 + (total % 6 > 0 ? 1 : 0);
 

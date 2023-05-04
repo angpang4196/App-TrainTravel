@@ -26,7 +26,6 @@ public class MapAndReviewController extends HttpServlet {
 		SqlSession sqlSession = factory.openSession(true);
 
 		String contentId = req.getParameter("contentId");
-		System.out.println(contentId);
 
 		List<Review> list = sqlSession.selectList("replys.findById", contentId);
 

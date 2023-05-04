@@ -36,11 +36,6 @@ public class TrainInfoController extends HttpServlet {
 
 		depPlandTime = depPlandTime.replaceAll("-", "");
 
-		System.out.println("dep : " + depPlaceId);
-		System.out.println("arr : " + arrPlaceId);
-		System.out.println("time : " + depPlandTime);
-		System.out.println(arrName);
-
 		TrainResponseResult tr = TrainAPI.getTrainResponseResult(depPlaceId, arrPlaceId, depPlandTime);
 
 		CodeItem[] ci = CodeAPI.getCodeResponseResult().getResponse().getBody().getItems().getItems();
