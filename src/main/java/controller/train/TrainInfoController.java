@@ -24,6 +24,17 @@ public class TrainInfoController extends HttpServlet {
 
 		resp.setContentType("text/html;charset=utf-8");
 
+		String a = req.getParameter("depPlaceId");
+		String b = req.getParameter("arrPlaceId");
+		String c = req.getParameter("depPlandTime");
+
+		if (a != null || b != null) {
+			if (a.equals("출발지를 선택해주세요") || b.equals("")) {
+				resp.sendRedirect("/trainList?error=1");
+				return;
+			}
+		}
+
 		String arrInfo = req.getParameter("arrPlaceId");
 		String[] arrInfos = arrInfo.split("&");
 		String arrCode = arrInfos[0];
@@ -35,11 +46,6 @@ public class TrainInfoController extends HttpServlet {
 		String depPlandTime = req.getParameter("depPlandTime");
 
 		depPlandTime = depPlandTime.replaceAll("-", "");
-
-		System.out.println("dep : " + depPlaceId);
-		System.out.println("arr : " + arrPlaceId);
-		System.out.println("time : " + depPlandTime);
-		System.out.println(arrName);
 
 		TrainResponseResult tr = TrainAPI.getTrainResponseResult(depPlaceId, arrPlaceId, depPlandTime);
 
