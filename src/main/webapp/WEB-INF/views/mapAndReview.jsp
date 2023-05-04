@@ -78,12 +78,10 @@
 							console.log(o);
 							messages.innerHTML += "<div class='msg'>"+o.content+"</div>";
 						}
-						
 					}
 				}
 			}
 		};
-			
 		setInterval(function(){
 			let value = parseInt(document.querySelector("#refresh").innerHTML);
 			value--;
@@ -93,7 +91,6 @@
 			}
 			document.querySelector("#refresh").innerHTML = value;
 		}, 1000);
-		
 	</script>
 </body>
 </html>
