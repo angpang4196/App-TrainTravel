@@ -5,9 +5,12 @@ import java.net.http.HttpClient;
 import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
 import java.net.http.HttpResponse.BodyHandlers;
+import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.Map;
 import com.google.gson.Gson;
+
+import data.tour.summary.TourSummaryItem;
 import data.tour.summary.TourSummaryResponseResult;
 
 public class TourSummaryAPI {
