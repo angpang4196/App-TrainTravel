@@ -70,15 +70,14 @@
 			xhr.onreadystatechange=function(){
 				if(this.readyState===4) {
 					const json = JSON.parse(this.responseText);	// 아마 객체 배열일 듯
-					if(json.result) {
+					if(json) {
 						const messages = document.querySelector("#messages");
 						messages.innerHTML = "";
-						console.log(json.result);
-						for(let o of json.items) {
+						console.log(json);
+						for(let o of json) {
 							console.log(o);
-							messages.innerHTML += "<div class='msg'>"+o.body+"</div>";
+							messages.innerHTML += "<div class='msg'>"+o.content+"</div>";
 						}
-						document.querySelector("#cnt").innerHTML = json.total;
 					}
 				}
 			}

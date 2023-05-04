@@ -1,6 +1,7 @@
 package controller.tour;
 
 import java.io.IOException;
+import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -12,6 +13,7 @@ import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
 
 import data.area.Area;
+import data.cate.Cate;
 import data.tour.summary.TourSummaryItem;
 import data.tour.summary.TourSummaryResponseResult;
 import util.TourSummaryAPI;
@@ -21,6 +23,22 @@ public class TourCodeController extends HttpServlet {
 
 	@Override
 	protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+
+		SqlSessionFactory factory = (SqlSessionFactory) req.getServletContext().getAttribute("sqlSessionFactory");
+		SqlSession sqlSession = factory.openSession();
+
+		String cate = req.getParameter("cate");
+
+		if (cate == null) {
+			cate = "관광지";
+		}
+		
+		req.setAttribute("cate", cate);
+
+		Cate c = sqlSession.selectOne("cates.findByType", cate);
+		String contentTypeId = c.getCode();
+		List<Cate> li = sqlSession.selectList("cates.findAll");
+		req.setAttribute("cateAll", li);
 
 		String cityname = req.getParameter("area");
 		req.setAttribute("cityname", cityname);
@@ -33,14 +51,11 @@ public class TourCodeController extends HttpServlet {
 			p = Integer.parseInt(paramPage);
 		}
 
-		SqlSessionFactory factory = (SqlSessionFactory) req.getServletContext().getAttribute("sqlSessionFactory");
-		SqlSession sqlSession = factory.openSession();
-
 		System.out.println(cityname);
 		Area area = sqlSession.selectOne("areas.findByName", cityname);
 		String code = area.getCode();
 
-		TourSummaryResponseResult tsr = TourSummaryAPI.getTourSummaryResponseResult(code, paramPage);
+		TourSummaryResponseResult tsr = TourSummaryAPI.getTourSummaryResponseResult(code, paramPage, contentTypeId);
 		TourSummaryItem[] tsi = tsr.getResponse().getBody().getItems().getItem();
 
 		int total = tsr.getResponse().getBody().getTotalCount();
