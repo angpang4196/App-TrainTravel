@@ -53,7 +53,6 @@ public class SearchNameController extends HttpServlet {
 				}
 			}
 		}
-		
 		Gson gson = new Gson();
 
 		PrintWriter out = resp.getWriter();

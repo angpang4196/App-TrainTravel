@@ -8,6 +8,15 @@ public class Review {
 	String writer;
 	Date writed;
 	String contentId;
+	String formatWrited;
+
+	public String getFormatWrited() {
+		return formatWrited;
+	}
+
+	public void setFormatWrited(String formatWrited) {
+		this.formatWrited = formatWrited;
+	}
 
 	public void setWriter(String writer) {
 		this.writer = writer;

@@ -21,11 +21,8 @@ public class LostController extends HttpServlet {
 	protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		SqlSessionFactory factory = (SqlSessionFactory) req.getServletContext().getAttribute("sqlSessionFactory");
 		SqlSession sqlSession = factory.openSession(true);
-		
-		
-		
+
 		List<LostItem> li = sqlSession.selectList("losts.findAll");
-		System.out.println(li + "k");
 		req.setAttribute("lostItem", li);
 
 		String spell = req.getParameter("spell");
@@ -34,11 +31,11 @@ public class LostController extends HttpServlet {
 		}
 
 		LostItem item = sqlSession.selectOne("losts.findBySpell", spell);
-		
+
 		req.setAttribute("item", item);
-		
+
 		sqlSession.close();
-		
+
 		req.getRequestDispatcher("/WEB-INF/views/lost.jsp").forward(req, resp);
 	}
 
