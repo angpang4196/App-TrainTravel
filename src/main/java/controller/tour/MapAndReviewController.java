@@ -1,6 +1,9 @@
 package controller.tour;
 
 import java.io.IOException;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
 import javax.servlet.ServletException;
@@ -28,6 +31,13 @@ public class MapAndReviewController extends HttpServlet {
 		String contentId = req.getParameter("contentId");
 
 		List<Review> list = sqlSession.selectList("replys.findById", contentId);
+		
+		for(Review r : list) {
+			Date writed = r.getWrited();
+			DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");      
+			String dateToStr = dateFormat.format(writed);
+			r.setFormatWrited(dateToStr);
+		}
 
 		req.setAttribute("list", list);
 

@@ -7,44 +7,94 @@
 <head>
 <meta charset="UTF-8">
 <title>지도 제공 및 후기 작성 페이지</title>
+<style>
+.return, .searchRoad {
+      background-color: #F8F8F8;
+      padding: 10px;
+      margin-bottom: 10px;
+    }
+
+.searchRoad {
+      margin-top: 20px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-size: 16px;
+    }
+
+.searchRoad a {
+      background-color: #42444e;
+      color: white;
+      border-radius: 5px;
+      padding: 10px 20px;
+      text-decoration: none;
+      transition: background-color 0.3s ease-in-out;
+    }
+.searchRoad a:hover {
+      background-color: #42444e;
+      color: lime;
+    }
+
+.return {
+      margin-top: 20px;
+      text-align: center;
+      font-size: 16px;
+      background-color:  #42444e;
+    }
+
+.return a {
+      color: white;
+      border-radius: 5px;
+      padding: 10px 20px;
+      text-decoration: none;
+      transition: background-color 0.3s ease-in-out;
+    }
+
+.return a:hover {
+      background-color: #333;
+      color: #fff;
+    }
+</style>
 </head>
 <body>
 	<div style="display: flex">
 		<div style="flex: 7; justify-content: center; align-items: center; display: grid;">
+			<div class="return">
+				<a href="/summary?area=${cityname }">관광지 리스트로 돌아가기</a>
+			</div>			
+			<div class="searchRoad" style="border: 2px solid black">					
+				<a href="https://map.kakao.com/link/to/${tdi.title }, ${tdi.mapy }, ${tdi.mapx}" style="margin-right: 30px">길 찾기</a>
+				<p>※ 도착지는 설정되어 있으니 출발지만 입력 해 주시면 됩니다.</p>
+			</div>
 			<%-- 주소 및 지도 영역 --%>
 			<div>
-				<p>관광지 ID : ${contentid }
-				<p>주소 : ${tdi.addr1 }</p>
+				<h4>주소</h4><hr/>
+				<p>${tdi.addr1 }</p><hr/>
 			</div>
-			<div id="map" style="width: 500px; height: 400px;">
+			<div id="map" style="width: 900px; height: 600px;">
 				지도 데이터를 불러오고 있습니다.
-			</div>
-			<%-- 길 찾기 바로가기 --%>
-			<div>
-				<a href="https://map.kakao.com/link/to/${tdi.title }, ${tdi.mapy }, ${tdi.mapx}">길 찾기</a>
 			</div>
 		</div>
 		<%-- 후기 작성 영역 --%>
-		<div>
-			<div>
+		<div style="flex: 3;border: 1px solid black;">
+			<div style="text-align: center; justify-content: center">
 				<form action="/reply-task?contentId=${contentid }&cityname=${cityname}" method="POST">
-					 content :
-					<textarea name="content" style="width: 80%; resize: none"></textarea>
+					 <h3>후기 작성</h3>
+					<textarea name="content" style="width: 80%; height:200px; resize: none"></textarea><br/>
 					<button type="submit">댓글 등록</button>
 				</form>
 			</div>
-			<a href="/summary?area=${cityname }">관광지 리스트</a>
 			<h4>
-				후기 ( <span id="cnt">${fn:length(list) }</span>   건) <span id="refresh" style="cursor: pointer;">5</span>초 후 갱신
+				최근 후기 목록 (<span id="refresh" style="cursor: pointer;">5</span>초 후 갱신)<hr/>
 			</h4>
 			<div id="messages">
 				<c:forEach items="${list}" var="m">
-					<div class="msg">${m.content }</div>
+					<div class="msg"><small>(${m.formatWrited })</small>&nbsp;&nbsp;&nbsp;${m.content }</div><hr/>
 				</c:forEach>
 			</div>
    		</div>
 	</div>
-	<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=cb20b73c8a35a25057f0dd1efe5d635d"></script>
+	<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=8b021b28b9f59d481b964d672a2c52b7"></script>
 	<script>
 		var container = document.getElementById('map');
 		var options = {
@@ -69,19 +119,19 @@
 			xhr.send();
 			xhr.onreadystatechange=function(){
 				if(this.readyState===4) {
-					const json = JSON.parse(this.responseText);	// 아마 객체 배열일 듯
+					const json = JSON.parse(this.responseText);
 					if(json) {
 						const messages = document.querySelector("#messages");
 						messages.innerHTML = "";
-						console.log(json);
 						for(let o of json) {
 							console.log(o);
-							messages.innerHTML += "<div class='msg'>"+o.content+"</div>";
+							messages.innerHTML += "<div class='msg'><small>(" + o.formatWrited + ")</small>&nbsp;&nbsp;&nbsp;" +  o.content + "</div><hr/>";
 						}
 					}
 				}
 			}
 		};
+		
 		setInterval(function(){
 			let value = parseInt(document.querySelector("#refresh").innerHTML);
 			value--;

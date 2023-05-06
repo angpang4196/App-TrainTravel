@@ -43,7 +43,7 @@ public class TourCodeController extends HttpServlet {
 
 		String cityname = req.getParameter("area");
 		req.setAttribute("cityname", cityname);
-
+		
 		String paramPage = req.getParameter("page");
 		int p;
 		if (paramPage == null) {

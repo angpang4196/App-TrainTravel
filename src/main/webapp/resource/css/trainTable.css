@@ -4,6 +4,21 @@ body {
   color: #666;
   font: 14px/24px "Open Sans", "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", Sans-Serif;
 }
+.menu{
+	margin:20px;
+	color: white;
+}
+
+.menu:hover{
+	color: lime;
+}
+a{
+	text-decoration: none;
+	color: gray;
+	font-size: x-large;
+	text-align: center;
+	align-items: center;
+}
 table {
   border-collapse: separate;
   border-spacing: 0;
