@@ -96,6 +96,7 @@ a {
 			<c:forEach items="${cateAll }" var="one">
 				<a href="/summary?cate=${one.type }&area=${area}">${one.type }</a>
 			</c:forEach>
+			<a href="/trainList">열차 선택</a>
 		</div>
 		<div class="search">
 			<form action="/searchDetail?cityname=${cityname }" method="POST">

@@ -1,7 +1,10 @@
 package controller.tour;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -14,6 +17,7 @@ import org.apache.ibatis.session.SqlSessionFactory;
 
 import data.area.Area;
 import data.cate.Cate;
+import data.db.tour.DBTourList;
 import data.tour.summary.TourSummaryItem;
 import data.tour.summary.TourSummaryResponseResult;
 import util.TourSummaryAPI;
@@ -25,7 +29,7 @@ public class TourCodeController extends HttpServlet {
 	protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
 		SqlSessionFactory factory = (SqlSessionFactory) req.getServletContext().getAttribute("sqlSessionFactory");
-		SqlSession sqlSession = factory.openSession();
+		SqlSession sqlSession = factory.openSession(true);
 
 		String cate = req.getParameter("cate");
 
@@ -37,13 +41,13 @@ public class TourCodeController extends HttpServlet {
 
 		Cate c = sqlSession.selectOne("cates.findByType", cate);
 		String contentTypeId = c.getCode();
-		
+
 		List<Cate> li = sqlSession.selectList("cates.findAll");
 		req.setAttribute("cateAll", li);
 
 		String cityname = req.getParameter("area");
 		req.setAttribute("cityname", cityname);
-		
+
 		String paramPage = req.getParameter("page");
 		int p;
 		if (paramPage == null) {
@@ -54,10 +58,26 @@ public class TourCodeController extends HttpServlet {
 		Area area = sqlSession.selectOne("areas.findByName", cityname);
 		String code = area.getCode();
 
-		TourSummaryResponseResult tsr = TourSummaryAPI.getTourSummaryResponseResult(code, paramPage, contentTypeId);
-		TourSummaryItem[] tsi = tsr.getResponse().getBody().getItems().getItem();
+//		TourSummaryResponseResult tsr = TourSummaryAPI.getTourSummaryResponseResult(code, paramPage, contentTypeId);
+//		TourSummaryItem[] tsi = tsr.getResponse().getBody().getItems().getItem();
 
-		int total = tsr.getResponse().getBody().getTotalCount();
+		Map<String, String> map = new HashMap<>();
+		map.put("areaCode", code);
+		map.put("contentTypeId", contentTypeId);
+
+		List<DBTourList> list = sqlSession.selectList("tourlist.findByContentIdAndArea", map);
+		List<DBTourList> sendList = new ArrayList<>();
+		
+		int end = p * 12;
+		if(list.size() < 12) {
+			end = list.size();
+		}
+		
+		for(int i = 12 * (p - 1) ; i < end ; i++) {
+			sendList.add(list.get(i));
+		}
+
+		int total = list.size();
 
 		int lastPage = total / 6 + (total % 6 > 0 ? 1 : 0);
 
@@ -74,7 +94,7 @@ public class TourCodeController extends HttpServlet {
 		req.setAttribute("existNext", existNext);
 		req.setAttribute("area", cityname);
 
-		req.setAttribute("tsi", tsi);
+		req.setAttribute("tsi", sendList);
 
 		req.getRequestDispatcher("/WEB-INF/views/tourList.jsp").forward(req, resp);
 
