@@ -46,17 +46,13 @@ public class TourDetailController extends HttpServlet {
 		Status status = sqlSession.selectOne("statuses.statusCheck", contentId);
 
 		if (status == null) {
-
 			req.setAttribute("status", 0);
-
 		} else {
 			req.setAttribute("status", status.getStatus());
-
 		}
 
 		Destination dt = sqlSession.selectOne("destination.findById", contentId);
 		if (dt == null) {
-
 			sqlSession.insert("destination.createDestination", contentId);
 		}
 
