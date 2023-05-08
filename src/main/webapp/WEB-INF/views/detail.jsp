@@ -151,7 +151,7 @@ img {
 			<div>
 				<c:choose>
 					<c:when test="${status eq '0' }">
-						<form action="/like?contentid=${requestScope.contentid }" method="post">
+						<form action="/like?contentid=${requestScope.contentid }&area=${cityname }" method="post">
 							<button type="submit">좋아요</button>
 						</form>
 					</c:when>

@@ -10,6 +10,25 @@ public class DBTourList {
 	String contentid;
 	String addr1;
 
+	int likes;
+	int views;
+
+	public int getLikes() {
+		return likes;
+	}
+
+	public void setLikes(int likes) {
+		this.likes = likes;
+	}
+
+	public int getViews() {
+		return views;
+	}
+
+	public void setViews(int views) {
+		this.views = views;
+	}
+
 	public String getAreaCode() {
 		return areaCode;
 	}

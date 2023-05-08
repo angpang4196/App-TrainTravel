@@ -106,7 +106,14 @@ a {
 				<button type="submit">Search</button>
 			</form>
 		</div>
-		<h1 style="text-align: center;">${area } ${requestScope.cate } 리스트</h1>
+		<div>
+			<h1 style="text-align: center;">${area } ${requestScope.cate } 리스트</h1>
+			<div style="text-align: right; margin-right: 20px;margin-bottom: 10px">
+				<a href="/summary?flag=asc&area=${area }&cate=${cate}" style="color: black"><b>가나다</b></a>
+				<a href="/summary?flag=views&area=${area }&cate=${cate}" style="color: black"><b>조회순</b></a>
+				<a href="/summary?flag=likes&area=${area }&cate=${cate}" style="color: black"><b>추천순</b></a>
+			</div>
+		</div>
 		<div style="display: flex; width: 100%; flex-wrap: wrap;">
 			<c:forEach items="${tsi}" var="t">
 				<div style="width: 33%; display: flex; flex-direction: column; padding: 4px; border: 1px solid black; margin:1px;">

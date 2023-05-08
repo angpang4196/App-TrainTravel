@@ -12,6 +12,7 @@
 	</select>
 	<select id="findByContentIdAndArea" parameterType="hashmap" resultType="data.db.tour.DBTourList">
 		select * from tourlist where contentTypeId = #{contentTypeId} and areacode = #{areaCode}
+		order by title
 	</select>
 	<select id="findByArea" parameterType="hashmap" resultType="data.db.tour.DBTourList">
 		select title from tourlist where areacode = #{areaCode} and title like '%'||#{q}||'%'
