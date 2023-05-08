@@ -4,7 +4,7 @@ public class DBTourList {
 
 	String areaCode;
 	String contentTypeId;
-
+	String id;
 	String title;
 	String firstimage;
 	String contentid;
@@ -75,6 +75,14 @@ public class DBTourList {
 
 	public void setAddr1(String addr1) {
 		this.addr1 = addr1;
+	}
+
+	public String getId() {
+		return id;
+	}
+
+	public void setId(String id) {
+		this.id = id;
 	}
 
 }

@@ -38,10 +38,13 @@ public class TourDetailController extends HttpServlet {
 		String userId = user.getId();
 
 		String contentId = req.getParameter("contentId");
+		
+		
 		Map<String, String> map = new HashMap<>();
 
 		map.put("userId", userId);
 		map.put("contentId", contentId);
+		
 
 		Status status = sqlSession.selectOne("statuses.statusCheck", contentId);
 
