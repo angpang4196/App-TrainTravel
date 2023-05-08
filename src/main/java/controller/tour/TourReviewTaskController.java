@@ -48,9 +48,8 @@ public class TourReviewTaskController extends HttpServlet {
 		sqlSession.insert("replys.createReply", map);
 		sqlSession.close();
 
-		//resp.sendRedirect("/summary?area=" + URLEncoder.encode(cityname,"utf-8"));
-		resp.sendRedirect("/mapAndReview?contentId="+contentId);
-		
+		// resp.sendRedirect("/summary?area=" + URLEncoder.encode(cityname,"utf-8"));
+		resp.sendRedirect("/mapAndReview?contentId=" + contentId);
 
 	}
 

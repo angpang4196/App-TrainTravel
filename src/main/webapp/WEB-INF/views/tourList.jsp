@@ -124,6 +124,9 @@ a {
 						<img style="width: 100%; height: 100%; object-fit: cover" src="${empty t.firstimage ? '/resource/img/noimg.gif' : t.firstimage }" />
 					</div>
 					<div>
+						<small style="font-size: 12px;">조회수 (${t.views })건 / 추천수(${t.likes })건</small>					
+					</div>
+					<div>
 						<p style="text-overflow: ellipsis;"><b>주소</b><hr/><small>${t.addr1 }</small></p>
 					</div>
 				</div>

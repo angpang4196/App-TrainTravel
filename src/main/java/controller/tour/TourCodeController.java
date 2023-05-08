@@ -77,7 +77,6 @@ public class TourCodeController extends HttpServlet {
 		} else {
 			list = sqlSession.selectList("destination.orderByLikes", map);
 		}
-		System.out.println(list.get(0).getTitle());
 		List<DBTourList> sendList = new ArrayList<>();
 
 		int end = p * 12;

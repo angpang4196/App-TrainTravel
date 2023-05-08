@@ -31,9 +31,9 @@ public class LikeController extends HttpServlet {
 		HttpSession session = req.getSession();
 		User user = (User) session.getAttribute("logonUser");
 		String userId = user.getId();
-		String cityname =req.getParameter("area");
+		String cityname = req.getParameter("area");
 		String contentId = req.getParameter("contentid");
-		
+
 		Map<String, String> map = new HashMap<>();
 		map.put("userId", userId);
 		map.put("contentId", contentId);
@@ -48,17 +48,17 @@ public class LikeController extends HttpServlet {
 		}
 
 		Destination dt = sqlSession.selectOne("destination.findById", contentId);
-		
+
 		if (dt == null) {
 			sqlSession.insert("destination.createDestination", contentId);
 		}
-		
+
 		sqlSession.update("destination.updateViews", contentId);
 
 		sqlSession.close();
 
 		TourDetailItem tdi = TourDetailAPI.getTourDetailItem(contentId);
-        req.setAttribute("cityname", cityname);
+		req.setAttribute("cityname", cityname);
 		req.setAttribute("contentid", contentId);
 		req.setAttribute("detail", tdi);
 
