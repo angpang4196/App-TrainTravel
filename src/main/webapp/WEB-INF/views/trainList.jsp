@@ -47,39 +47,37 @@ button[type="submit"]:hover {
 <link rel="stylesheet" href="/resource/css/style.css" />
 </head>
 <body>
-	<div
-		style="display: flex; justify-content: center; align-items: center; height: 100vh">
-		<form action="/trainInfo" method="get"
-			style="width: 50vw; height: 280px; display: flex; flex-direction: column; justify-content: space-between;">
-			<div
-				style="display: flex; justify-content: space-around; padding: 4px; gap: 4px">
+	<div style="display: flex; justify-content: center; align-items: center; height: 100vh">
+		<form action="/trainInfo" method="get" style="width: 50vw; height: 280px; display: flex; flex-direction: column; justify-content: space-between;">
+			<h2>출발지와 도착지, 날짜를 선택 해 주세요.</h2>
+			<div style="display: flex; justify-content: space-around; padding: 4px; gap: 4px">
 				<select name="depPlaceId" id="depCity" style="flex: 1">
 					<option>출발지를 선택해주세요</option>
 					<c:forEach items="${ci }" var="one">
 						<option value="${one.citycode }">${one.cityname }</option>
 					</c:forEach>
-				</select> <select name="dep" id="depstation" style="flex: 1">
+				</select> 
+				<select name="dep" id="depstation" style="flex: 1">
 					<c:forEach items="${si }" var="i">
 						<option value="${i.nodename }">${i.nodename }역</option>
 					</c:forEach>
 				</select>
 			</div>
-			<div
-				style="display: flex; justify-content: space-around; padding: 4px; gap: 4px">
+			<div style="display: flex; justify-content: space-around; padding: 4px; gap: 4px">
 				<select name="arrPlaceId" id="arrCity" style="flex: 1">
 					<option value="">도착지를 선택해주세요</option>
 					<c:forEach items="${ci }" var="one">
 						<option value="${one.citycode }&${one.cityname}">${one.cityname }</option>
 					</c:forEach>
-				</select> <select name="arr" id="arrstation" style="flex: 1">
+				</select> 
+				<select name="arr" id="arrstation" style="flex: 1">
 					<c:forEach items="${si }" var="i">
 						<option value="${i.nodename }">${i.nodename }역</option>
 					</c:forEach>
 				</select>
 			</div>
-			<div
-				style="display: flex; justify-content: space-around; padding: 4px; gap: 4px;">
-				<input type="date" name="depPlandTime" style="flex: 1"/>
+			<div style="display: flex; justify-content: space-around; padding: 4px; gap: 4px;">
+				<input type="date" name="depPlandTime" style="flex: 1"  id="change"/>
 				<button type="submit" style="flex: 1">열차조회</button>
 			</div>
 			<p>
@@ -111,10 +109,8 @@ button[type="submit"]:hover {
 						return '<option value="'+ e.nodeid+'">' + e.nodename
 								+ '</option>';
 					});
-
 					document.querySelector("#depstation").innerHTML = cvt
 							.join("");
-
 				}
 			}
 		}
@@ -129,7 +125,6 @@ button[type="submit"]:hover {
 			xhr.onreadystatechange = function() {
 				if (this.readyState === 4) {
 					const txt = this.responseText;
-
 					console.log(typeof txt, txt);
 					const obj = JSON.parse(txt);
 					console.log(obj.map);
@@ -137,10 +132,8 @@ button[type="submit"]:hover {
 						return '<option value="'+ e.nodeid+'">' + e.nodename
 								+ '</option>';
 					});
-
 					document.querySelector("#arrstation").innerHTML = cvt
 							.join("");
-
 				}
 			}
 		}

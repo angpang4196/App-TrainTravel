@@ -3,7 +3,9 @@ package controller.tour;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -17,6 +19,7 @@ import org.apache.ibatis.session.SqlSessionFactory;
 import com.google.gson.Gson;
 
 import data.area.Area;
+import data.db.tour.DBTourList;
 import data.tour.summary.TourSummaryItem;
 import data.tour.summary.TourSummaryResponseResult;
 import util.TourSummaryAPI;
@@ -33,32 +36,39 @@ public class SearchNameController extends HttpServlet {
 		String cityname = req.getParameter("cityname");
 
 		Area area = sqlSession.selectOne("areas.findByName", cityname);
-		String code = area.getCode();
+		String areaCode = area.getCode();
 		resp.setContentType("text/plain;charset=utf-8");
 
-		TourSummaryResponseResult result = TourSummaryAPI.getTourSummaryResponseResult(code);
-		TourSummaryItem[] items = result.getResponse().getBody().getItems().getItem();
+//		TourSummaryResponseResult result = TourSummaryAPI.getTourSummaryResponseResult(code);
+//		TourSummaryItem[] items = result.getResponse().getBody().getItems().getItem();
 
-		List<String> names = new ArrayList<>();
-		
-		for(TourSummaryItem tsi : items) {
-			names.add(tsi.getTitle());
-		}
+		Map<String, String> map = new HashMap<>();
+		map.put("areaCode", areaCode);
+		map.put("q", q);
 
-		List<String> complete = new ArrayList<>();
-		for (String s : names) {
-			if(q.length() == 2) {
-				if (s.contains(q)) {
-					complete.add(s);
+		if (q.length() >= 2) {
+			List<DBTourList> list = sqlSession.selectList("tourlist.findByArea", map);
+
+			List<String> names = new ArrayList<>();
+
+			for (DBTourList tsi : list) {
+				names.add(tsi.getTitle());
+			}
+
+			List<String> complete = new ArrayList<>();
+			for (String s : names) {
+				if (q.length() == 2) {
+					if (s.contains(q)) {
+						complete.add(s);
+					}
 				}
 			}
+			Gson gson = new Gson();
+
+			PrintWriter out = resp.getWriter();
+
+			out.println(gson.toJson(complete));
 		}
-		
-		Gson gson = new Gson();
-
-		PrintWriter out = resp.getWriter();
-
-		out.println(gson.toJson(complete));
 	}
 
 }

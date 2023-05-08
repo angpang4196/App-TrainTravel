@@ -12,7 +12,6 @@
 	<update id="updateViews" parameterType="string">
 		update destinations set views = views + 1 where ID = #{contentId}
 	</update>
-	
 	<update id="updateLikes" parameterType="string">
 		update destinations set likes = likes + 1 where ID = #{contentId}
 	</update>

@@ -15,15 +15,8 @@ import data.tour.summary.TourSummaryResponseResult;
 
 public class TourSummaryAPI {
 
-	static TourSummaryResponseResult cachedResponseResult = null;
-	static TourSummaryResponseResult ajaxCachedResponseResult = null;
-
 	public static TourSummaryResponseResult getTourSummaryResponseResult(String code, String paramPage,
 			String contentTypeId) {
-
-		if (cachedResponseResult != null) {
-			return cachedResponseResult;
-		}
 
 		try {
 			String target = "http://apis.data.go.kr/B551011/KorService1/areaBasedList1";
@@ -50,7 +43,7 @@ public class TourSummaryAPI {
 			Gson gson = new Gson();
 
 			TourSummaryResponseResult result = gson.fromJson(response.body(), TourSummaryResponseResult.class);
-			cachedResponseResult = result;
+
 			return result;
 
 		} catch (Exception e) {
@@ -61,10 +54,6 @@ public class TourSummaryAPI {
 	}
 
 	public static TourSummaryResponseResult getTourSummaryResponseResult(String code) {
-		
-		if (ajaxCachedResponseResult != null) {
-			return ajaxCachedResponseResult;
-		}
 
 		try {
 			String target = "http://apis.data.go.kr/B551011/KorService1/areaBasedList1";
@@ -73,7 +62,8 @@ public class TourSummaryAPI {
 			params.put("serviceKey",
 					"SeTtVLG3NcocSbzkF4EhdHQJAj8xemMsODPSqFQEaeW2INI7Mbj7FqIvchikdNkajvkkxqRU8oc6y9XLOx0nCg%3D%3D");
 			params.put("_type", "json");
-			params.put("numOfRows", "2000");
+			params.put("pageNo", "1");
+			params.put("numOfRows", "12");
 			params.put("MobileOS", "ETC");
 			params.put("MobileApp", "AppTest");
 			params.put("areaCode", code);
@@ -90,14 +80,11 @@ public class TourSummaryAPI {
 
 			TourSummaryResponseResult result = gson.fromJson(response.body(), TourSummaryResponseResult.class);
 
-			ajaxCachedResponseResult = result;
 			return result;
 
 		} catch (Exception e) {
 			e.printStackTrace();
 			return null;
 		}
-
 	}
-
 }
