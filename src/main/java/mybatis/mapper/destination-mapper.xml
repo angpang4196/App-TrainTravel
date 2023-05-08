@@ -3,7 +3,6 @@
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="destination">
-
 	<select id="findById" resultType="data.destination.Destination" parameterType="string">
 		select * from destinations where Id = #{id}
 	</select>
@@ -16,23 +15,18 @@
 	<update id="updateLikes" parameterType="string">
 		update destinations set likes = likes + 1 where ID = #{contentId}
 	</update>
-	<select id="orderByBasic" resultType="data.destination.Destination">
-		select * from 
-	</select>
 	<select id="orderByViews" resultType="data.db.tour.DBTourList" parameterType="hashmap">
-		select title,ID,TOURLIST.CONTENTTYPEID,TOURLIST.AREACODE,tourlist.firstimage,tourlist.addr1,
+		select title,ID,TOURLIST.CONTENTTYPEID,TOURLIST.AREACODE,tourlist.firstimage,tourlist.addr1, TOURLIST.CONTENTID,
 		NVL(likes, 0) as likes,coalesce(destinations.views,0) as views
 		from tourlist left JOIN destinations on tourlist.contentid = destinations.id 
 		where tourlist.contenttypeid=#{contentTypeId} and tourlist.areacode=#{areaCode} 
 		order by views desc
 	</select>
 	<select id="orderByLikes" resultType="data.db.tour.DBTourList" parameterType="hashmap">
-			select title,ID,TOURLIST.CONTENTTYPEID,TOURLIST.AREACODE,tourlist.firstimage,tourlist.addr1,
+		select title,ID,TOURLIST.CONTENTTYPEID,TOURLIST.AREACODE,tourlist.firstimage,tourlist.addr1, TOURLIST.CONTENTID,
 		NVL(likes, 0) as likes,coalesce(destinations.views,0) as views
 		from tourlist left JOIN destinations on tourlist.contentid = destinations.id 
 		where tourlist.contenttypeid=#{contentTypeId} and tourlist.areacode=#{areaCode} 
-		order by views desc
+		order by likes desc
 	</select>
-	
-
 </mapper>

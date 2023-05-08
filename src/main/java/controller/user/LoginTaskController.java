@@ -39,7 +39,7 @@ public class LoginTaskController extends HttpServlet {
 				HttpSession session = req.getSession();
 				session.setAttribute("logon", true);
 				session.setAttribute("logonUser", user);
-				
+
 				resp.sendRedirect("/trainList");
 			} else {
 				resp.sendRedirect("/index?cause=error");

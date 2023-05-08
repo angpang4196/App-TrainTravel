@@ -11,12 +11,15 @@
 		select * from tourlist where contentid = #{contentid}
 	</select>
 	<select id="findByContentIdAndArea" parameterType="hashmap" resultType="data.db.tour.DBTourList">
-		select * from tourlist where contentTypeId = #{contentTypeId} and areacode = #{areaCode}
+		select title,ID,TOURLIST.CONTENTTYPEID,TOURLIST.AREACODE,tourlist.firstimage,tourlist.addr1, TOURLIST.CONTENTID,
+		NVL(likes, 0) as likes,coalesce(destinations.views,0) as views
+		from tourlist left JOIN destinations on tourlist.contentid = destinations.id 
+		where tourlist.contenttypeid=#{contentTypeId} and tourlist.areacode=#{areaCode} 
 		order by title
 	</select>
 	<select id="findByArea" parameterType="hashmap" resultType="data.db.tour.DBTourList">
-		select * from 
-			(select * from tourlist where areacode = #{areaCode} and title like '%'||#{q}||'%')
+		select title from 
+			(select title from tourlist where areacode = #{areaCode} and title like '%'||#{q}||'%')
 		where rownum &lt;= 10 
 	</select>
 </mapper>

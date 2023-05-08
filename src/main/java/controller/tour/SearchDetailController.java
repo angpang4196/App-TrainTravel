@@ -52,7 +52,7 @@ public class SearchDetailController extends HttpServlet {
 		}
 
 		if (contentId.equals("")) {
-			resp.sendRedirect("/summary?area=" + URLEncoder.encode(cityname,"utf-8"));
+			resp.sendRedirect("/summary?area=" + URLEncoder.encode(cityname, "utf-8"));
 		} else {
 			Status status = sqlSession.selectOne("statuses.statusCheck", contentId);
 			if (status == null) {
