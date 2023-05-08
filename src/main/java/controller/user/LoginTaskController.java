@@ -23,13 +23,17 @@ public class LoginTaskController extends HttpServlet {
 
 	@Override
 	protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		resp.setContentType("text/html;charset=utf-8");
 
 		SqlSessionFactory factory = (SqlSessionFactory) req.getServletContext().getAttribute("sqlSessionFactory");
 		SqlSession sqlSession = factory.openSession();
 
 		String id = req.getParameter("id");
 		String pass = req.getParameter("pass");
+
+		if (id == null || pass == null) {
+			resp.sendRedirect("/index?cause=error");
+		}
+
 		User user = sqlSession.selectOne("users.findById", id);
 
 		if (user == null) {
@@ -39,7 +43,7 @@ public class LoginTaskController extends HttpServlet {
 				HttpSession session = req.getSession();
 				session.setAttribute("logon", true);
 				session.setAttribute("logonUser", user);
-				
+
 				resp.sendRedirect("/trainList");
 			} else {
 				resp.sendRedirect("/index?cause=error");

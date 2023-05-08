@@ -171,7 +171,14 @@ img {
 					<h1>${detail.title }</h1>
 				</div>
 				<div style="text-align: center;" >
-					<img src="${detail.firstimage }" style="width:40%; height: 30%" />
+					<c:choose>
+						<c:when test="${empty detail.firstimage }">
+							<img src="/resource/img/noimg.gif" style="width:40%; height: 30%" />
+						</c:when>
+						<c:otherwise>
+							<img src="${detail.firstimage }" style="width:40%; height: 30%" />
+						</c:otherwise>
+					</c:choose>
 				</div>
 			</div>
 			<%-- 상세 정보 영역 --%>

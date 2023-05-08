@@ -67,19 +67,19 @@ public class TourCodeController extends HttpServlet {
 
 		List<DBTourList> list = sqlSession.selectList("tourlist.findByContentIdAndArea", map);
 		List<DBTourList> sendList = new ArrayList<>();
-		
+
 		int end = p * 12;
-		if(list.size() < 12) {
+		if (list.size() < 12) {
 			end = list.size();
 		}
-		
-		for(int i = 12 * (p - 1) ; i < end ; i++) {
+
+		for (int i = 12 * (p - 1); i < end; i++) {
 			sendList.add(list.get(i));
 		}
 
 		int total = list.size();
 
-		int lastPage = total / 6 + (total % 6 > 0 ? 1 : 0);
+		int lastPage = total / 12 + (total % 12 > 0 ? 1 : 0);
 
 		int last = (int) Math.ceil(p / 5.0) * 5;
 		int start = last - 4;

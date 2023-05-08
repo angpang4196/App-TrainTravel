@@ -131,7 +131,7 @@ a {
 			<c:forEach var="p" begin="${start }" end="${last }">
 				<c:choose>
 					<c:when test="${p eq param.page }">
-						<span>${p }</span>
+						<a style="background-color: blue; color: white;">${p }</a>
 					</c:when>
 					<c:otherwise>
 						<a href="${target }page=${p }">${p }</a>
@@ -143,7 +143,6 @@ a {
 			</c:if>
 		</div>
 	</div>
-	
 	<script>
 		document.querySelector("#search").onkeyup = function(evt) {
 			const xhr = new XMLHttpRequest();
@@ -152,7 +151,6 @@ a {
 			xhr.onreadystatechange = function() {
 				if(this.readyState === 4) {
 					const txt = this.responseText;
-					console.log(txt);
 					const obj = JSON.parse(txt);
 					const cvt = obj.map(function(e) { 
 						return "<option>" + e + "</option>";
