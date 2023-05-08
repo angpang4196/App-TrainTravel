@@ -3,6 +3,7 @@ package controller.tour;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 
@@ -61,25 +62,36 @@ public class TourCodeController extends HttpServlet {
 //		TourSummaryResponseResult tsr = TourSummaryAPI.getTourSummaryResponseResult(code, paramPage, contentTypeId);
 //		TourSummaryItem[] tsi = tsr.getResponse().getBody().getItems().getItem();
 
+		String flag = req.getParameter("flag");
 		Map<String, String> map = new HashMap<>();
 		map.put("areaCode", code);
 		map.put("contentTypeId", contentTypeId);
+		map.put("flag", flag);
 
-		List<DBTourList> list = sqlSession.selectList("tourlist.findByContentIdAndArea", map);
+		List<DBTourList> list = new ArrayList<>();
+
+		if (flag == null || flag.equals("asc")) {
+			list = sqlSession.selectList("tourlist.findByContentIdAndArea", map);
+		} else if (flag.equals("views")) {
+			list = sqlSession.selectList("destination.orderByViews", map);
+		} else {
+			list = sqlSession.selectList("destination.orderByLikes", map);
+		}
+		System.out.println(list.get(0).getTitle());
 		List<DBTourList> sendList = new ArrayList<>();
-		
+
 		int end = p * 12;
-		if(list.size() < 12) {
+		if (list.size() < 12) {
 			end = list.size();
 		}
-		
-		for(int i = 12 * (p - 1) ; i < end ; i++) {
+
+		for (int i = 12 * (p - 1); i < end; i++) {
 			sendList.add(list.get(i));
 		}
 
 		int total = list.size();
 
-		int lastPage = total / 6 + (total % 6 > 0 ? 1 : 0);
+		int lastPage = total / 12 + (total % 12 > 0 ? 1 : 0);
 
 		int last = (int) Math.ceil(p / 5.0) * 5;
 		int start = last - 4;
