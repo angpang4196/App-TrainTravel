@@ -13,6 +13,8 @@ body {
 .return {
 	text-align: right;
 	margin: 10px;
+	justify-content: center;
+	align-items: center;
 }
 .return a {
 	text-decoration: none;
@@ -67,6 +69,9 @@ body {
 	align-items: center;
 	margin: 20px;
 }
+.return img:hover {
+	cursor: pointer;
+}
 
 .img img {
 	max-width: 1000px;
@@ -77,7 +82,7 @@ body {
 <body>
 	<div>
 		<div class="return">
-			<a href="/trainList">열차 선택화면으로 돌아가기</a>
+			<img src="/resource/img/뒤로가기1.jpg" style="height:70px; width: 70px;" onclick="history.back()"/>
 		</div>
 		<div class="title">
 			<h3>유실물 찾기</h3>
