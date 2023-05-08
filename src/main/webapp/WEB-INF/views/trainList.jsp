@@ -79,7 +79,7 @@ button[type="submit"]:hover {
 			</div>
 			<div
 				style="display: flex; justify-content: space-around; padding: 4px; gap: 4px;">
-				<input type="date" name="depPlandTime" style="flex: 1"  id="change"/>
+				<input type="date" name="depPlandTime" style="flex: 1"/>
 				<button type="submit" style="flex: 1">열차조회</button>
 			</div>
 			<p>
