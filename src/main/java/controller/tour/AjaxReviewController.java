@@ -21,7 +21,7 @@ import com.google.gson.Gson;
 import data.Review;
 
 @WebServlet("/message")
-public class MessageAPI extends HttpServlet {
+public class AjaxReviewController extends HttpServlet {
 
 	@Override
 	protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
