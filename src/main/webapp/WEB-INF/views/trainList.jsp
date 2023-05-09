@@ -101,7 +101,6 @@ button[type="submit"]:hover {
 			xhr.onreadystatechange = function() {
 				if (this.readyState === 4) {
 					const txt = this.responseText;
-
 					console.log(typeof txt, txt);
 					const obj = JSON.parse(txt);
 					console.log(obj.map);
