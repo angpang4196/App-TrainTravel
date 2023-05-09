@@ -42,7 +42,7 @@ public class SearchDetailController extends HttpServlet {
 
 		TourSummaryResponseResult result = TourSummaryAPI.getTourSummaryResponseResult(code);
 		TourSummaryItem[] items = result.getResponse().getBody().getItems().getItem();
-
+		
 		String contentId = "";
 
 		for (TourSummaryItem tsi : items) {

@@ -52,7 +52,6 @@ public class TourSummaryAPI {
 		}
 
 	}
-
 	public static TourSummaryResponseResult getTourSummaryResponseResult(String code) {
 
 		try {
@@ -63,7 +62,7 @@ public class TourSummaryAPI {
 					"SeTtVLG3NcocSbzkF4EhdHQJAj8xemMsODPSqFQEaeW2INI7Mbj7FqIvchikdNkajvkkxqRU8oc6y9XLOx0nCg%3D%3D");
 			params.put("_type", "json");
 			params.put("pageNo", "1");
-			params.put("numOfRows", "12");
+			params.put("numOfRows", "8000");
 			params.put("MobileOS", "ETC");
 			params.put("MobileApp", "AppTest");
 			params.put("areaCode", code);
