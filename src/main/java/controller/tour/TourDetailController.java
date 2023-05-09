@@ -31,13 +31,14 @@ public class TourDetailController extends HttpServlet {
 		SqlSessionFactory factory = (SqlSessionFactory) req.getServletContext().getAttribute("sqlSessionFactory");
 		SqlSession sqlSession = factory.openSession(true);
 		HttpSession session = req.getSession();
-        
-		String cityname =req.getParameter("cityname");
+
+		String cityname = req.getParameter("cityname");
 		req.setAttribute("cityname", cityname);
 		User user = (User) session.getAttribute("logonUser");
 		String userId = user.getId();
 
 		String contentId = req.getParameter("contentId");
+
 		Map<String, String> map = new HashMap<>();
 
 		map.put("userId", userId);

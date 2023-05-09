@@ -6,11 +6,9 @@
 	<select id="statusCheck" resultType="data.statuses.Status" parameterType="string">
 		select * from statuses where content_id = #{id}
 	</select>
-	
 	<insert id="status" parameterType="hashmap">
 		insert into statuses(USER_ID,CONTENT_ID,STATUS) values(#{userId}, #{contentId},1)
 	</insert>
-	
 	<update id="updateViews">
 		update reviews set views = views + 1 where Id = #{boardId}
 	</update>

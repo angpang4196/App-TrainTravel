@@ -31,10 +31,10 @@ public class MapAndReviewController extends HttpServlet {
 		String contentId = req.getParameter("contentId");
 
 		List<Review> list = sqlSession.selectList("replys.findById", contentId);
-		
-		for(Review r : list) {
+
+		for (Review r : list) {
 			Date writed = r.getWrited();
-			DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");      
+			DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 			String dateToStr = dateFormat.format(writed);
 			r.setFormatWrited(dateToStr);
 		}
