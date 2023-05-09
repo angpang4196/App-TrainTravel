@@ -171,7 +171,7 @@ img {
 					<h1>${detail.title }</h1>
 				</div>
 				<div style="text-align: center;" >
-					<img src="${detail.firstimage }" style="width:40%; height: 30%" />
+					<img src="${empty detail.firstimage ? '/resource/img/noimg.gif' : detail.firstimage }" style="width:40%; height: 30%" />
 				</div>
 			</div>
 			<%-- 상세 정보 영역 --%>

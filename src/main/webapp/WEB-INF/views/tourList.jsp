@@ -125,6 +125,9 @@ a {
 							onerror="this.src='/resource/img/noimg.gif'"/>
 					</div>
 					<div>
+						<small style="font-size: 12px;">조회수 (${t.views })건 / 추천수(${t.likes })건</small>					
+					</div>
+					<div>
 						<p style="text-overflow: ellipsis;"><b>주소</b><hr/><small>${t.addr1 }</small></p>
 					</div>
 				</div>

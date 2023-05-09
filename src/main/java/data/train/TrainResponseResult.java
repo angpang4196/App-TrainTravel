@@ -5,7 +5,6 @@ public class TrainResponseResult {
 
 	public TrainResponse getResponse() {
 		return response;
-	} 
-	
+	}
 
 }

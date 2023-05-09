@@ -10,29 +10,26 @@
 </head>
 <body>
 	<div class="container right-panel-active">
- 
-
-  <!-- Sign In -->
-  <div class="container__form container--signin">
-    <form action="/join-task" class="form" id="form2">
-      <h2 class="form__title">Sign Up</h2>
-      <input type="text" placeholder="UserId" class="input" name="id"/>
-      <input type="password" placeholder="Password" class="input" name="pass"/>
-       <button class="btn" type="submit" >Sign Up</button>
-    </form>
-  </div>
-
-  <!-- Overlay -->
-  <div class="container__overlay">
-    <div class="overlay">
-      <div class="overlay__panel overlay--left">
-        <button class="btn"  id="signIn">SignUp is required</button>
-      </div>
-      <div class="overlay__panel overlay--right">
-        <button class="btn" id="signUp">Sign Up</button>
-      </div>
-    </div>
-  </div>
-</div>
+		<!-- Sign In -->
+		<div class="container__form container--signin">
+			<form action="/join-task" class="form" id="form2">
+				<h2 class="form__title">Sign Up</h2>
+				<input type="text" placeholder="UserId" class="input" name="id" /> <input
+					type="password" placeholder="Password" class="input" name="pass" />
+				<button class="btn" type="submit">Sign Up</button>
+			</form>
+		</div>
+		<!-- Overlay -->
+		<div class="container__overlay">
+			<div class="overlay">
+				<div class="overlay__panel overlay--left">
+					<button class="btn" id="signIn">SignUp is required</button>
+				</div>
+				<div class="overlay__panel overlay--right">
+					<button class="btn" id="signUp">Sign Up</button>
+				</div>
+			</div>
+		</div>
+	</div>
 </body>
 </html>

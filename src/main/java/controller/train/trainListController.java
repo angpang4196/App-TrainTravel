@@ -21,7 +21,7 @@ public class TrainListController extends HttpServlet {
 
 		CodeItem[] ci = CodeAPI.getCodeResponseResult().getResponse().getBody().getItems().getItems();
 		StationItem[] si = StationAPI.getStationResponseResult("1").getResponse().getBody().getItems().getItem();
-     
+
 		if (ci == null && si == null) {
 			req.setAttribute("cause", "notData");
 		}
