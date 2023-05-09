@@ -7,8 +7,14 @@
 <meta charset="UTF-8">
 <title>해당 관광지 상세 정보 페이지</title>
 <style>
+@font-face {
+    font-family: 'neon';
+    src: url('/resource/font/Katuri.ttf') format('truetype');
+}
+
 * {
     box-sizing: border-box;
+    font-family: 'neon';
 }
 
 a {
@@ -41,9 +47,9 @@ a {
 
 /* Added styles below */
 body {
-    background-color: #f0f0f0;
+    background-color: #B9E9FC;
     font-family: Arial, sans-serif;
-    color: #333;
+    color: #576CBC;
 }
 
 .container {
@@ -56,7 +62,6 @@ body {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    background-color: #42444e;
     padding: 10px 20px;
     margin-bottom: 20px;
     border-radius: 5px;
@@ -73,8 +78,7 @@ body {
 .menu a.button {
   display: inline-block;
   border: 1px solid #ccc;
-  background-color: #fff;
-  color: #333;
+  color:  #576CBC;
   font-size: 14px;
   padding: 6px 12px;
   text-align: center;
@@ -85,14 +89,13 @@ body {
 }
 
 a.button:hover {
-  background-color: #333;
-  color: #fff;
+  background-color: #B9E9FC;
+  color: ;
   border-color: #333;
 }
 
 .menu button {
-    background-color: #fff;
-    color: #42444e;
+    color:  #576CBC;
     border: none;
     padding: 10px 20px;
     font-size: 16px;
@@ -139,24 +142,24 @@ img {
 </head>
 <body>
 	<%-- 전체 영역 --%>
-	<div style="margin-left: 200px; margin-right: 200px;">
-		<div class="menu" style="display: flex; width: 100%; background-color: #42444e; margin-bottom: 10px; padding: 40px;">
+	<div style="margin-left: 200px; margin-right: 200px; background-color: #DAF5FF; border-radius: 10px">
+		<div class="menu" style="display: flex; width: 100%; margin-bottom: 10px; padding: 40px; background-color: #DAF5FF">
 			<div>
 				<form action="/mapAndReview?contentId=${requestScope.contentid }&cityname=${cityname}" method="post">
 					<input type="hidden" name="mapx" value="${detail.mapx }" /> 
 						<input type="hidden" name="mapy" value="${detail.mapy }" />
-					<button type="submit">지도 및 후기 작성하기</button>
+					<button type="submit" style="background-color: #B9E9FC; border-radius: 10px; color: #576CBC;">지도 및 후기 작성하기</button>
 				</form>
 			</div>
 			<div>
 				<c:choose>
 					<c:when test="${status eq '0' }">
 						<form action="/like?contentid=${requestScope.contentid }&area=${cityname }" method="post">
-							<button type="submit">좋아요</button>
+							<button type="submit" style="background-color: #B9E9FC; border-radius: 10px; color: #576CBC">좋아요</button>
 						</form>
 					</c:when>
 					<c:otherwise>
-			      		<p style="color: white">추천은 한번만 가능합니다</p>
+			      		<p style="color: #576CBC; background-color: #B9E9FC; border-radius: 10px; width: 200px; text-align: center">추천은 한번만 가능합니다</p>
 			    	</c:otherwise>
 				</c:choose>
 			</div>
@@ -175,7 +178,7 @@ img {
 				</div>
 			</div>
 			<%-- 상세 정보 영역 --%>
-			<div>
+			<div style="padding: 10px">
 				<div>
 					<h3>주소</h3>
 					<hr/>
@@ -186,7 +189,6 @@ img {
 					<h3>상세 정보</h3>
 					<hr/>
 					<p>${detail.overview }</p>
-					<hr/>
 				</div>
 			</div>
 		</div>

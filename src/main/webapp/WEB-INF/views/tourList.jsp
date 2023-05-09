@@ -7,8 +7,14 @@
 <meta charset="UTF-8">
 <title>List of Tourist Attractions</title>
 <style>
+@font-face {
+    font-family: 'neon';
+    src: url('/resource/font/Katuri.ttf') format('truetype');
+}
+
 * {
 	box-sizing: border-box;
+	font-family: 'neon';
 }
 
 a {
@@ -20,13 +26,12 @@ a {
 	justify-content: space-between;
 	align-items: center;
 	padding: 16px 0;
-	border-bottom: 1px solid #ccc;
+	border-bottom: 2px solid white;
 }
 
 .cate a {
 	font-size: 16px;
 	font-weight: bold;
-	color: #333;
 	margin-right: 16px;
 }
 
@@ -88,15 +93,36 @@ a {
 .page a:hover {
 	background-color: #ddd;
 }
+body{
+	width: 100vw;
+	height: 100vh; 
+	position: relative;
+	background-size: cover;
+	background-attachment: fixed;
+}
+body::before{
+	content: "";
+	opacity: 0.4;
+	position: fixed;
+	top: 0px;
+	left: 0px;
+	right: 0px;
+	bottom: 0px;
+}
+body div{
+	color: black;
+	text-align: center;
+	position: relative;
+}
 </style>
 </head>
-<body>
+<body style="background-color: #B9E9FC">
 	<div style="width: 960px; margin: auto;">
 		<div class="cate">
 			<c:forEach items="${cateAll }" var="one">
-				<a href="/summary?cate=${one.type }&area=${area}">${one.type }</a>
+				<a href="/summary?cate=${one.type }&area=${area}" style="color: #576CBC; font-size: 15px"><b>${one.type }</b></a>
 			</c:forEach>
-			<a href="/trainList">열차 선택</a>
+			<a href="/trainList" style="color: #576CBC; font-size: 15px"><b>열차 선택</b></a>
 		</div>
 		<div class="search">
 			<form action="/searchDetail?cityname=${cityname }" method="POST">
@@ -107,27 +133,31 @@ a {
 			</form>
 		</div>
 		<div>
-			<h1 style="text-align: center;">${area } ${requestScope.cate } 리스트</h1>
-			<div style="text-align: right; margin-right: 20px;margin-bottom: 10px">
-				<a href="/summary?flag=asc&area=${area }&cate=${cate}" style="color: black"><b>가나다</b></a>
-				<a href="/summary?flag=views&area=${area }&cate=${cate}" style="color: black"><b>조회순</b></a>
-				<a href="/summary?flag=likes&area=${area }&cate=${cate}" style="color: black"><b>추천순</b></a>
+			<div>
+				<h1 style="text-align: center;color: #576CBC">${area } ${requestScope.cate } 리스트</h1>
+			</div>
+			<div style="display: flex; flex-direction: row-reverse;">
+				<div style="margin-right: 20px; margin-bottom: 10px; width: 170px; border-radius: 10px">
+					<a href="/summary?flag=asc&area=${area }&cate=${cate}" style="color: #576CBC; margin: 4px"><b>가나다</b></a>
+					<a href="/summary?flag=views&area=${area }&cate=${cate}" style="color: #576CBC; margin: 4px"><b>조회순</b></a>
+					<a href="/summary?flag=likes&area=${area }&cate=${cate}" style="color: #576CBC; margin: 4px"><b>추천순</b></a>
+				</div>
 			</div>
 		</div>
-		<div style="display: flex; width: 100%; flex-wrap: wrap;">
+		<div style="display: flex; width: 100%; flex-wrap: wrap; background-color: #DAF5FF; border-radius: 10px; padding-left: 9px; padding-top: 9px; padding-bottom: 9px;">
 			<c:forEach items="${tsi}" var="t">
-				<div style="width: 33%; display: flex; flex-direction: column; padding: 4px; border: 1px solid black; margin:1px;">
+				<div style="width: 33%; display: flex; flex-direction: column; padding: 4px; border: 1px solid #B9E9FC;">
 					<h2>
-						<a href="/detail?contentId=${t.contentid}&cityname=${cityname }" style="text-decoration: none">${t.title}</a>
+						<a href="/detail?contentId=${t.contentid}&cityname=${cityname }" style="text-decoration: none; color: #576CBC">${t.title}</a>
 					</h2>
 					<div style="height: 200px;">
 						<img style="width: 100%; height: 100%; object-fit: cover" src="${empty t.firstimage ? '/resource/img/noimg.gif' : t.firstimage }" />
 					</div>
 					<div>
-						<small style="font-size: 12px;">조회수 (${t.views })건 / 추천수(${t.likes })건</small>					
+						<small style="font-size: 12px; color: #576CBC;">조회수 (${t.views })건 / 추천수(${t.likes })건</small>					
 					</div>
 					<div>
-						<p style="text-overflow: ellipsis;"><b>주소</b><hr/><small>${t.addr1 }</small></p>
+						<p style="text-overflow: ellipsis; color: #576CBC;"><b>주소</b></p><hr/><small style="color: #576CBC">${t.addr1 }</small>
 					</div>
 				</div>
 			</c:forEach>
