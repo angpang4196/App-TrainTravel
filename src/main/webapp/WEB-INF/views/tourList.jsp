@@ -109,7 +109,7 @@ a {
 		<div>
 			<h1 style="text-align: center;">${area } ${requestScope.cate } 리스트</h1>
 			<div style="text-align: right; margin-right: 20px;margin-bottom: 10px">
-				<a href="/summary?flag=asc&area=${area }&cate=${cate}" style="color: black"><b>가나다</b></a>
+				<a href="/summary?flag=asc&area=${area }&cate=${cate}" style="color: black"><b>이름순</b></a>
 				<a href="/summary?flag=views&area=${area }&cate=${cate}" style="color: black"><b>조회순</b></a>
 				<a href="/summary?flag=likes&area=${area }&cate=${cate}" style="color: black"><b>추천순</b></a>
 			</div>
@@ -121,7 +121,8 @@ a {
 						<a href="/detail?contentId=${t.contentid}&cityname=${cityname }" style="text-decoration: none">${t.title}</a>
 					</h2>
 					<div style="height: 200px;">
-						<img style="width: 100%; height: 100%; object-fit: cover" src="${empty t.firstimage ? '/resource/img/noimg.gif' : t.firstimage }" />
+						<img style="width: 100%; height: 100%; object-fit: cover" src="${empty t.firstimage ? '/resource/img/noimg.gif' : t.firstimage }" 
+							onerror="this.src='/resource/img/noimg.gif'"/>
 					</div>
 					<div>
 						<p style="text-overflow: ellipsis;"><b>주소</b><hr/><small>${t.addr1 }</small></p>

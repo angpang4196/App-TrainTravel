@@ -63,7 +63,7 @@
 				<a href="/summary?area=${cityname }">관광지 리스트로 돌아가기</a>
 			</div>			
 			<div class="searchRoad" style="border: 2px solid black">					
-				<a href="https://map.kakao.com/link/to/${tdi.title }, ${tdi.mapy }, ${tdi.mapx}" style="margin-right: 30px">길 찾기</a>
+				<a target="blank" href="https://map.kakao.com/link/to/${tdi.title }, ${tdi.mapy }, ${tdi.mapx}" style="margin-right: 30px">길 찾기</a>
 				<p>※ 도착지는 설정되어 있으니 출발지만 입력 해 주시면 됩니다.</p>
 			</div>
 			<%-- 주소 및 지도 영역 --%>

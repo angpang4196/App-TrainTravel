@@ -42,6 +42,7 @@ public class MapAndReviewController extends HttpServlet {
 		req.setAttribute("list", list);
 
 		String cityname = req.getParameter("cityname");
+		System.out.println(cityname);
 		req.setAttribute("cityname", cityname);
 
 		TourDetailItem tdi = TourDetailAPI.getTourDetailItem(contentId);
