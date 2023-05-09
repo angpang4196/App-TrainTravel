@@ -52,8 +52,6 @@ public class LikeController extends HttpServlet {
 		if (dt == null) {
 			sqlSession.insert("destination.createDestination", contentId);
 		}
-
-
 		sqlSession.close();
 
 		TourDetailItem tdi = TourDetailAPI.getTourDetailItem(contentId);

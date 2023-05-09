@@ -17,11 +17,6 @@ public class IndexController extends HttpServlet {
 
 	@Override
 	protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		AreaCodeResponseResult ar = AreaCodeAPI.getAreaCodeResponseResult();
-		AreaCodeItem[] ai = ar.getResponse().getBody().getItems().getItem();
-
-		SqlSessionFactory factory = (SqlSessionFactory) req.getServletContext().getAttribute("sqlSessionFactory");
-		SqlSession sqlSession = factory.openSession(true);
 
 		req.getRequestDispatcher("/WEB-INF/index.jsp").forward(req, resp);
 	}

@@ -19,10 +19,8 @@ import org.apache.ibatis.session.SqlSessionFactory;
 import com.google.gson.Gson;
 
 import data.area.Area;
+import data.cate.Cate;
 import data.db.tour.DBTourList;
-import data.tour.summary.TourSummaryItem;
-import data.tour.summary.TourSummaryResponseResult;
-import util.TourSummaryAPI;
 
 @WebServlet("/api/search")
 public class SearchNameController extends HttpServlet {
@@ -57,10 +55,8 @@ public class SearchNameController extends HttpServlet {
 
 			List<String> complete = new ArrayList<>();
 			for (String s : names) {
-				if (q.length() == 2) {
-					if (s.contains(q)) {
-						complete.add(s);
-					}
+				if (s.contains(q)) {
+					complete.add(s);
 				}
 			}
 			Gson gson = new Gson();
