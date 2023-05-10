@@ -24,7 +24,7 @@ import data.tour.summary.TourSummaryResponseResult;
 import util.TourSummaryAPI;
 
 @WebServlet("/summary")
-public class TourCodeController extends HttpServlet {
+public class TourSummaryController extends HttpServlet {
 
 	@Override
 	protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -34,7 +34,7 @@ public class TourCodeController extends HttpServlet {
 
 		String cate = req.getParameter("cate");
 
-		if (cate == null) {
+		if (cate == null || cate.equals("")) {
 			cate = "관광지";
 		}
 
@@ -47,6 +47,10 @@ public class TourCodeController extends HttpServlet {
 		req.setAttribute("cateAll", li);
 
 		String cityname = req.getParameter("area");
+		if (cityname == null) {
+			cityname = "서울특별시";
+		}
+
 		req.setAttribute("cityname", cityname);
 
 		String paramPage = req.getParameter("page");
@@ -81,6 +85,10 @@ public class TourCodeController extends HttpServlet {
 
 		int end = p * 12;
 		if (list.size() < 12) {
+			end = list.size();
+		}
+		
+		if(end > list.size()) {
 			end = list.size();
 		}
 

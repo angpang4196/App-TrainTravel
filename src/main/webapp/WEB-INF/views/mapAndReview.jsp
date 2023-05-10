@@ -71,7 +71,7 @@
 				<a href="/summary?area=${cityname }">관광지 리스트로 돌아가기</a>
 			</div>			
 			<div class="searchRoad" style="border-radius: 10px; background-color: #DAF5FF;">					
-				<a target="blank" href="https://map.kakao.com/link/to/${tdi.title }, ${tdi.mapy }, ${tdi.mapx}" style="margin-right: 30px;">길 찾기</a>
+				<a target="blank" href="https://map.kakao.com/link/to/${tdi.addr1 }, ${tdi.mapy }, ${tdi.mapx}" style="margin-right: 30px;">길 찾기</a>
 				<p style="color: #576CBC">※ 도착지는 설정되어 있으니 출발지만 입력 해 주시면 됩니다.</p>
 			</div>
 			<%-- 주소 및 지도 영역 --%>
@@ -79,7 +79,7 @@
 				<h4 style="color: #576CBC">주소</h4><hr/>
 				<p style="color: #576CBC">${tdi.addr1 }</p><hr/>
 			</div>
-			<div id="map" style="width: 900px; height: 600px;">
+			<div id="map" style="width: 900px; height: 600px; border-radius: 10px">
 				<p style="color: #576CBC">지도 데이터를 불러오고 있습니다.</p>
 			</div>
 		</div>
@@ -93,7 +93,7 @@
 				</form>
 			</div>
 			<h4 style="color: #576CBC">
-				최근 후기 목록 (<span id="refresh" style="cursor: pointer;">5</span>초 후 갱신)<hr/>
+				최근 후기 목록 (<span id="refresh" style="cursor: pointer;">5</span>초 후 갱신)
 			</h4>
 			<div id="messages">
 				<c:forEach items="${list}" var="m">
@@ -102,7 +102,7 @@
 			</div>
    		</div>
 	</div>
-	<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=8b021b28b9f59d481b964d672a2c52b7"></script>
+	<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=fa50ba81310359fa007dce1d4eb86753"></script>
 	<script>
 		var container = document.getElementById('map');
 		var options = {
