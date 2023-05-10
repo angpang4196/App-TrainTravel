@@ -31,6 +31,7 @@ public class TourReviewTaskController extends HttpServlet {
 		req.setCharacterEncoding("utf-8");
 
 		String cityname = req.getParameter("cityname");
+		req.setAttribute("cityname", cityname);
 
 		String contentId = req.getParameter("contentId");
 
@@ -49,7 +50,7 @@ public class TourReviewTaskController extends HttpServlet {
 		sqlSession.close();
 
 		// resp.sendRedirect("/summary?area=" + URLEncoder.encode(cityname,"utf-8"));
-		resp.sendRedirect("/mapAndReview?contentId=" + contentId);
+		resp.sendRedirect("/mapAndReview?contentId=" + contentId + "&cityname=" + URLEncoder.encode(cityname,"utf-8"));
 
 	}
 

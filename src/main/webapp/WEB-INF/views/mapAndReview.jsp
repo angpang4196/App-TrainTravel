@@ -68,7 +68,7 @@
 	<div style="display: flex">
 		<div style="flex: 7; justify-content: center; align-items: center; display: grid; background-color: #B9E9FC">
 			<div class="return">
-				<a href="/summary?area=${cityname }">관광지 리스트로 돌아가기</a>
+				<a href="/summary?area=${param.cityname }">관광지 리스트로 돌아가기</a>
 			</div>			
 			<div class="searchRoad" style="border-radius: 10px; background-color: #DAF5FF;">					
 				<a target="blank" href="https://map.kakao.com/link/to/${tdi.addr1 }, ${tdi.mapy }, ${tdi.mapx}" style="margin-right: 30px;">길 찾기</a>
@@ -86,7 +86,7 @@
 		<%-- 후기 작성 영역 --%>
 		<div style="flex: 3; background-color: #B9E9FC;">
 			<div style="text-align: center; justify-content: center">
-				<form action="/reply-task?contentId=${contentid }&cityname=${cityname}" method="POST">
+				<form action="/reply-task?contentId=${contentid }&cityname=${param.cityname}" method="POST">
 					 <h3 style="color: #576CBC">후기 작성</h3>
 					<textarea name="content" style="width: 80%; height:200px; resize: none; border-radius: 10px"></textarea><br/>
 					<button type="submit">댓글 등록</button>
@@ -103,7 +103,6 @@
    		</div>
 	</div>
 	<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=cb20b73c8a35a25057f0dd1efe5d635d"></script>
-
 	<script>
 		var container = document.getElementById('map');
 		var options = {

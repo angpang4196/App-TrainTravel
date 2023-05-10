@@ -50,7 +50,6 @@ public class TourSummaryController extends HttpServlet {
 		if (cityname == null) {
 			cityname = "서울특별시";
 		}
-
 		req.setAttribute("cityname", cityname);
 
 		String paramPage = req.getParameter("page");
