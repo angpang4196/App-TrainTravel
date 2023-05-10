@@ -23,7 +23,7 @@
 				<a href="https://www.letskorail.com/" class="menu">예매하기</a>
 			</div>
 			<div>
-				<a href="/lostItem" class="menu">유실물 찾기</a>
+				<a href="/lost" class="menu">유실물 찾기</a>
 			</div>
 		</div>
 		<div>
