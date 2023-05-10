@@ -26,6 +26,12 @@ public class JoinTaskController extends HttpServlet {
 
 		String id = req.getParameter("id");
 		String pass = req.getParameter("pass");
+		System.out.println("id="+id);
+		System.out.println("pass"+pass);
+		if(id.equals("") || pass.equals("")) {
+			resp.sendRedirect("/join?cause=none");
+			return;
+		}
 
 		User user = sqlSession.selectOne("users.findById", id);
 		if (user == null) {
@@ -35,9 +41,9 @@ public class JoinTaskController extends HttpServlet {
 			sqlSession = factory.openSession(true);
 			sqlSession.insert("users.join", map);
 
-			req.getRequestDispatcher("/WEB-INF/views/trainList.jsp").forward(req, resp);
+			req.getRequestDispatcher("/WEB-INF/index.jsp").forward(req, resp);
 		} else {
-			resp.sendRedirect("/views/join?cause=existId");
+			resp.sendRedirect("/join?cause=existId");
 		}
 		sqlSession.close();
 

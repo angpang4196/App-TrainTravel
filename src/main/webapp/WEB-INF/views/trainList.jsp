@@ -51,14 +51,22 @@ button[type="submit"]:hover {
 		<form action="/trainInfo" method="get" style="width: 50vw; height: 280px; display: flex; flex-direction: column; justify-content: space-between;">
 			<h2>출발지와 도착지, 날짜를 선택 해 주세요.</h2>
 			<div style="display: flex; justify-content: space-around; padding: 4px; gap: 4px">
+<<<<<<< HEAD
 				<select name="depPlaceId" id="depCity" style="flex: 1"  required>
+=======
+				<select name="depPlaceId" id="depCity" style="flex: 1" required>
+>>>>>>> 1eb4e3e939449f5e66c39c19d57c9c426f4bf405
 					<option>출발지를 선택해주세요</option>
 					<c:forEach items="${ci }" var="one">
 						<option value="${one.citycode }">${one.cityname }</option>
 					</c:forEach>
 				</select> 
 				<select name="dep" id="depstation" style="flex: 1" required>
+<<<<<<< HEAD
 					<option>출발 지역을 먼저 선택 해 주세요.</option>
+=======
+					<option>출발 지역을 먼저 설정 해 주세요.</option>
+>>>>>>> 1eb4e3e939449f5e66c39c19d57c9c426f4bf405
 					<c:forEach items="${si }" var="i">
 					</c:forEach>
 				</select>
@@ -71,7 +79,11 @@ button[type="submit"]:hover {
 					</c:forEach>
 				</select> 
 				<select name="arr" id="arrstation" style="flex: 1" required>
+<<<<<<< HEAD
 					<option>도착 지역을 먼저 선택 해 주세요.</option>
+=======
+					<option>도착 지역을 먼저 설정 해 주세요.</option>
+>>>>>>> 1eb4e3e939449f5e66c39c19d57c9c426f4bf405
 					<c:forEach items="${si }" var="i">
 					</c:forEach>
 				</select>
@@ -101,7 +113,6 @@ button[type="submit"]:hover {
 			xhr.onreadystatechange = function() {
 				if (this.readyState === 4) {
 					const txt = this.responseText;
-
 					console.log(typeof txt, txt);
 					const obj = JSON.parse(txt);
 					console.log(obj.map);
