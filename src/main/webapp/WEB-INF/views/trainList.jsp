@@ -51,7 +51,7 @@ button[type="submit"]:hover {
 		<form action="/trainInfo" method="get" style="width: 50vw; height: 280px; display: flex; flex-direction: column; justify-content: space-between;">
 			<h2>출발지와 도착지, 날짜를 선택 해 주세요.</h2>
 			<div style="display: flex; justify-content: space-around; padding: 4px; gap: 4px">
-				<select name="depPlaceId" id="depCity" style="flex: 1" required>
+				<select name="depPlaceId" id="depCity" style="flex: 1"  required>
 					<option>출발지를 선택해주세요</option>
 					<c:forEach items="${ci }" var="one">
 						<option value="${one.citycode }">${one.cityname }</option>

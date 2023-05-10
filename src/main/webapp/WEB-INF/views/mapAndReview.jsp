@@ -68,10 +68,10 @@
 	<div style="display: flex">
 		<div style="flex: 7; justify-content: center; align-items: center; display: grid; background-color: #B9E9FC">
 			<div class="return">
-				<a href="/summary?area=${cityname }">관광지 리스트로 돌아가기</a>
+				<a href="/summary?area=${param.cityname }">관광지 리스트로 돌아가기</a>
 			</div>			
 			<div class="searchRoad" style="border-radius: 10px; background-color: #DAF5FF;">					
-				<a target="blank" href="https://map.kakao.com/link/to/${tdi.title }, ${tdi.mapy }, ${tdi.mapx}" style="margin-right: 30px;">길 찾기</a>
+				<a target="blank" href="https://map.kakao.com/link/to/${tdi.addr1 }, ${tdi.mapy }, ${tdi.mapx}" style="margin-right: 30px;">길 찾기</a>
 				<p style="color: #576CBC">※ 도착지는 설정되어 있으니 출발지만 입력 해 주시면 됩니다.</p>
 			</div>
 			<%-- 주소 및 지도 영역 --%>
@@ -79,21 +79,21 @@
 				<h4 style="color: #576CBC">주소</h4><hr/>
 				<p style="color: #576CBC">${tdi.addr1 }</p><hr/>
 			</div>
-			<div id="map" style="width: 900px; height: 600px;">
+			<div id="map" style="width: 900px; height: 600px; border-radius: 10px">
 				<p style="color: #576CBC">지도 데이터를 불러오고 있습니다.</p>
 			</div>
 		</div>
 		<%-- 후기 작성 영역 --%>
 		<div style="flex: 3; background-color: #B9E9FC;">
 			<div style="text-align: center; justify-content: center">
-				<form action="/reply-task?contentId=${contentid }&cityname=${cityname}" method="POST">
+				<form action="/reply-task?contentId=${contentid }&cityname=${param.cityname}" method="POST">
 					 <h3 style="color: #576CBC">후기 작성</h3>
 					<textarea name="content" style="width: 80%; height:200px; resize: none; border-radius: 10px"></textarea><br/>
 					<button type="submit">댓글 등록</button>
 				</form>
 			</div>
 			<h4 style="color: #576CBC">
-				최근 후기 목록 (<span id="refresh" style="cursor: pointer;">5</span>초 후 갱신)<hr/>
+				최근 후기 목록 (<span id="refresh" style="cursor: pointer;">5</span>초 후 갱신)
 			</h4>
 			<div id="messages">
 				<c:forEach items="${list}" var="m">

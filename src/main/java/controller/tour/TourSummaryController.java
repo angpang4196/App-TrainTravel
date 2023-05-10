@@ -34,7 +34,7 @@ public class TourSummaryController extends HttpServlet {
 
 		String cate = req.getParameter("cate");
 
-		if (cate == null) {
+		if (cate == null || cate.equals("")) {
 			cate = "관광지";
 		}
 
@@ -84,6 +84,10 @@ public class TourSummaryController extends HttpServlet {
 
 		int end = p * 12;
 		if (list.size() < 12) {
+			end = list.size();
+		}
+		
+		if(end > list.size()) {
 			end = list.size();
 		}
 
