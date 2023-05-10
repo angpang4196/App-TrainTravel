@@ -166,7 +166,7 @@ body div{
 			<c:url value="/summary?area=${area }&" var="target">
 			</c:url>
 			<c:if test="${existPrev }">
-				<a href="${target }page=${start-1 }">이전 페이지</a>
+				<a href="${target }page=${start-1 }&cate=${cate}">이전 페이지</a>
 			</c:if>
 			<c:forEach var="p" begin="${start }" end="${last }">
 				<c:choose>
@@ -174,12 +174,12 @@ body div{
 						<a style="background-color: blue;color: white;">${p }</a>
 					</c:when>
 					<c:otherwise>
-						<a href="${target }page=${p }">${p }</a>
+						<a href="${target }page=${p }&cate=${cate}">${p }</a>
 					</c:otherwise>
 				</c:choose>
 			</c:forEach>
 			<c:if test="${existNext }">
-				<a href="${target }page=${last+1 }">다음 페이지</a>
+				<a href="${target }page=${last+1 }&cate=${cate}">다음 페이지</a>
 			</c:if>
 		</div>
 	</div>

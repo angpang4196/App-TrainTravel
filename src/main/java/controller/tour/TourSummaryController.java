@@ -24,7 +24,7 @@ import data.tour.summary.TourSummaryResponseResult;
 import util.TourSummaryAPI;
 
 @WebServlet("/summary")
-public class TourCodeController extends HttpServlet {
+public class TourSummaryController extends HttpServlet {
 
 	@Override
 	protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -47,6 +47,9 @@ public class TourCodeController extends HttpServlet {
 		req.setAttribute("cateAll", li);
 
 		String cityname = req.getParameter("area");
+		if (cityname == null) {
+			cityname = "서울특별시";
+		}
 		req.setAttribute("cityname", cityname);
 
 		String paramPage = req.getParameter("page");
