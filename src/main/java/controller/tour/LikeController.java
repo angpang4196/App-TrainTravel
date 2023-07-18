@@ -38,7 +38,7 @@ public class LikeController extends HttpServlet {
 		map.put("userId", userId);
 		map.put("contentId", contentId);
 
-		Status status = sqlSession.selectOne("statuses.statusCheck", contentId);
+		Status status = sqlSession.selectOne("statuses.statusCheck", map);
 
 		if (status == null) {
 			sqlSession.insert("statuses.status", map);

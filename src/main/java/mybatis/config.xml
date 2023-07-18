@@ -13,7 +13,7 @@
 				<property name="driver"
 					value="oracle.jdbc.driver.OracleDriver" />
 				<property name="url"
-					value="jdbc:oracle:thin:@3.34.136.30:1521:xe" />
+					value="jdbc:oracle:thin:@52.78.93.131:1521:xe" />
 				<property name="username" value="TEAM_A" />
 				<property name="password" value="1q2w3e4r" />
 			</dataSource>
@@ -26,7 +26,7 @@
 		<mapper resource="mybatis/mapper/statuses-mapper.xml" />
 		<mapper resource="mybatis/mapper/replys-mapper.xml" />
 		<mapper resource="mybatis/mapper/cates-mapper.xml" />
-		<mapper resource="mybatis/mapper/losts-mapper.xml"/>
-		<mapper resource="mybatis/mapper/tourlist-mapper.xml"/>
+		<mapper resource="mybatis/mapper/losts-mapper.xml" />
+		<mapper resource="mybatis/mapper/tourlist-mapper.xml" />
 	</mappers>
 </configuration>

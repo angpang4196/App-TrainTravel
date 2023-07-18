@@ -26,8 +26,7 @@ public class JoinTaskController extends HttpServlet {
 
 		String id = req.getParameter("id");
 		String pass = req.getParameter("pass");
-		System.out.println("id="+id);
-		System.out.println("pass"+pass);
+
 		if(id.equals("") || pass.equals("")) {
 			resp.sendRedirect("/join?cause=none");
 			return;

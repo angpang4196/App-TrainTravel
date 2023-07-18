@@ -6,15 +6,15 @@
 <head>
 <meta charset="UTF-8">
 <title>List of Tourist Attractions</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Jua&display=swap" rel="stylesheet">
 <style>
-@font-face {
-    font-family: 'neon';
-    src: url('/resource/font/Katuri.ttf') format('truetype');
-}
+@import url('https://fonts.googleapis.com/css2?family=Jua&display=swap');
 
 * {
 	box-sizing: border-box;
-	font-family: 'neon';
+	font-family: 'Jua', sans-serif;
 }
 
 a {
@@ -116,13 +116,13 @@ body div{
 }
 </style>
 </head>
-<body style="background-color: #B9E9FC">
+<body>
 	<div style="width: 960px; margin: auto;">
 		<div class="cate">
 			<c:forEach items="${cateAll }" var="one">
-				<a href="/summary?cate=${one.type }&area=${area}" style="color: #576CBC; font-size: 15px"><b>${one.type }</b></a>
+				<a href="/summary?cate=${one.type }&area=${area}" style="color: black; font-size: 15px"><b>${one.type }</b></a>
 			</c:forEach>
-			<a href="/trainList" style="color: #576CBC; font-size: 15px"><b>열차 선택</b></a>
+			<a href="/trainList" style="color: black; font-size: 15px"><b>열차 선택</b></a>
 		</div>
 		<div class="search">
 			<form action="/searchDetail?cityname=${cityname }" method="POST">
@@ -134,30 +134,30 @@ body div{
 		</div>
 		<div>
 			<div>
-				<h1 style="text-align: center;color: #576CBC">${area } ${requestScope.cate } 리스트</h1>
+				<h1 style="text-align: center;">${area } ${requestScope.cate } 리스트</h1>
 			</div>
 			<div style="display: flex; flex-direction: row-reverse;">
-				<div style="margin-right: 20px; margin-bottom: 10px; width: 170px; border-radius: 10px">
-					<a href="/summary?flag=asc&area=${area }&cate=${cate}" style="color: #576CBC; margin: 4px"><b>가나다</b></a>
-					<a href="/summary?flag=views&area=${area }&cate=${cate}" style="color: #576CBC; margin: 4px"><b>조회순</b></a>
-					<a href="/summary?flag=likes&area=${area }&cate=${cate}" style="color: #576CBC; margin: 4px"><b>추천순</b></a>
+				<div style="margin-right: 20px; margin-bottom: 10px; width: 180px; border-radius: 10px">
+					<a href="/summary?flag=asc&area=${area }&cate=${cate}" style="color : black; margin: 4px"><b>가나다</b></a>
+					<a href="/summary?flag=views&area=${area }&cate=${cate}" style="color : black; margin: 4px"><b>조회순</b></a>
+					<a href="/summary?flag=likes&area=${area }&cate=${cate}" style="color : black; margin: 4px"><b>추천순</b></a>
 				</div>
 			</div>
 		</div>
-		<div style="display: flex; width: 100%; flex-wrap: wrap; background-color: #DAF5FF; border-radius: 10px; padding-left: 9px; padding-top: 9px; padding-bottom: 9px;">
+		<div style="display: flex; width: 100%; flex-wrap: wrap;  border-radius: 10px; padding-left: 9px; padding-top: 9px; padding-bottom: 9px;">
 			<c:forEach items="${tsi}" var="t">
-				<div style="width: 33%; display: flex; flex-direction: column; padding: 4px; border: 1px solid #B9E9FC;">
+				<div style="width: 33%; display: flex; flex-direction: column; padding: 4px; border: 1px solid black;">
 					<h2>
-						<a href="/detail?contentId=${t.contentid}&cityname=${cityname }" style="text-decoration: none; color: #576CBC">${t.title}</a>
+						<a href="/detail?contentId=${t.contentid}&cityname=${cityname }" style="text-decoration: none; color: black">${t.title}</a>
 					</h2>
 					<div style="height: 200px;">
 						<img style="width: 100%; height: 100%; object-fit: cover" src="${empty t.firstimage ? '/resource/img/noimg.gif' : t.firstimage }" />
 					</div>
 					<div>
-						<small style="font-size: 12px; color: #576CBC;">조회수 (${t.views })건 / 추천수(${t.likes })건</small>					
+						<small style="font-size: 12px;">조회수 (${t.views })건 / 추천수(${t.likes })건</small>					
 					</div>
 					<div>
-						<p style="text-overflow: ellipsis; color: #576CBC;"><b>주소</b></p><hr/><small style="color: #576CBC">${t.addr1 }</small>
+						<p style="text-overflow: ellipsis;"><b>주소</b></p><hr/><small>${t.addr1 }</small>
 					</div>
 				</div>
 			</c:forEach>
@@ -166,7 +166,7 @@ body div{
 			<c:url value="/summary?area=${area }&" var="target">
 			</c:url>
 			<c:if test="${existPrev }">
-				<a href="${target }page=${start-1 }&cate=${param.cate}">이전 페이지</a>
+				<a href="${target }page=${start-1 }&cate=${param.cate}">←</a>
 			</c:if>
 			<c:forEach var="p" begin="${start }" end="${last }">
 				<c:choose>
@@ -179,7 +179,7 @@ body div{
 				</c:choose>
 			</c:forEach>
 			<c:if test="${existNext }">
-				<a href="${target }page=${last+1 }&cate=${param.cate}">다음 페이지</a>
+				<a href="${target }page=${last+1 }&cate=${param.cate}">→</a>
 			</c:if>
 		</div>
 	</div>

@@ -7,14 +7,15 @@
 <head>
 <meta charset="UTF-8">
 <title>지도 제공 및 후기 작성 페이지</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Jua&display=swap" rel="stylesheet">
 <style>
-@font-face {
-    font-family: 'neon';
-    src: url('/resource/font/Katuri.ttf') format('truetype');
-}
+@import url('https://fonts.googleapis.com/css2?family=Jua&display=swap');
 
 * {
-	font-family: 'neon';
+	box-sizing: border-box;
+	font-family: 'Jua', sans-serif;
 }
 
 .return, .searchRoad {
@@ -66,33 +67,33 @@
 </head>
 <body>
 	<div style="display: flex">
-		<div style="flex: 7; justify-content: center; align-items: center; display: grid; background-color: #B9E9FC">
+		<div style="flex: 7; justify-content: center; align-items: center; display: grid;">
 			<div class="return">
 				<a href="/summary?area=${param.cityname }">관광지 리스트로 돌아가기</a>
 			</div>			
 			<div class="searchRoad" style="border-radius: 10px; background-color: #DAF5FF;">					
 				<a target="blank" href="https://map.kakao.com/link/to/${tdi.addr1 }, ${tdi.mapy }, ${tdi.mapx}" style="margin-right: 30px;">길 찾기</a>
-				<p style="color: #576CBC">※ 도착지는 설정되어 있으니 출발지만 입력 해 주시면 됩니다.</p>
+				<p>※ 도착지는 설정되어 있으니 출발지만 입력 해 주시면 됩니다.</p>
 			</div>
 			<%-- 주소 및 지도 영역 --%>
 			<div style="background-color: #DAF5FF; border-radius: 10px; padding: 10px; margin: 4px">
-				<h4 style="color: #576CBC">주소</h4><hr/>
-				<p style="color: #576CBC">${tdi.addr1 }</p><hr/>
+				<h4>주소</h4><hr/>
+				<p>${tdi.addr1 }</p><hr/>
 			</div>
 			<div id="map" style="width: 900px; height: 600px; border-radius: 10px">
 				<p style="color: #576CBC">지도 데이터를 불러오고 있습니다.</p>
 			</div>
 		</div>
 		<%-- 후기 작성 영역 --%>
-		<div style="flex: 3; background-color: #B9E9FC;">
+		<div style="flex: 3;">
 			<div style="text-align: center; justify-content: center">
 				<form action="/reply-task?contentId=${contentid }&cityname=${param.cityname}" method="POST">
-					 <h3 style="color: #576CBC">후기 작성</h3>
+					 <h3>후기 작성</h3>
 					<textarea name="content" style="width: 80%; height:200px; resize: none; border-radius: 10px"></textarea><br/>
 					<button type="submit">댓글 등록</button>
 				</form>
 			</div>
-			<h4 style="color: #576CBC">
+			<h4>
 				최근 후기 목록 (<span id="refresh" style="cursor: pointer;">5</span>초 후 갱신)
 			</h4>
 			<div id="messages">
@@ -102,7 +103,7 @@
 			</div>
    		</div>
 	</div>
-	<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=cb20b73c8a35a25057f0dd1efe5d635d"></script>
+	<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=3552f2bfa260157d29ee569cb02b4cab"></script>
 	<script>
 		var container = document.getElementById('map');
 		var options = {
@@ -132,7 +133,7 @@
 						const messages = document.querySelector("#messages");
 						messages.innerHTML = "";
 						for(let o of json) {
-							messages.innerHTML += "<div class='msg'><small style='color: #576CBC'>(" + o.formatWrited + ")</small>&nbsp;&nbsp;&nbsp;<span style='color: #576CBC'>" +  o.content + "</span></div><hr/>";
+							messages.innerHTML += "<div class='msg'><small>(" + o.formatWrited + ")</small>&nbsp;&nbsp;&nbsp;<span>" +  o.content + "</span></div><hr/>";
 						}
 					}
 				}

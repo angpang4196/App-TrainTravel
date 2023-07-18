@@ -6,15 +6,15 @@
 <head>
 <meta charset="UTF-8">
 <title>해당 관광지 상세 정보 페이지</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Jua&display=swap" rel="stylesheet">
 <style>
-@font-face {
-    font-family: 'neon';
-    src: url('/resource/font/Katuri.ttf') format('truetype');
-}
+@import url('https://fonts.googleapis.com/css2?family=Jua&display=swap');
 
 * {
-    box-sizing: border-box;
-    font-family: 'neon';
+	box-sizing: border-box;
+	font-family: 'Jua', sans-serif;
 }
 
 a {
@@ -24,7 +24,6 @@ a {
 .menu {
     display: flex;
     width: 100%;
-    background-color: #42444e;
     margin-bottom: 10px;
     padding: 40px;
     justify-content: space-between;
@@ -46,12 +45,6 @@ a {
 }
 
 /* Added styles below */
-body {
-    background-color: #B9E9FC;
-    font-family: Arial, sans-serif;
-    color: #576CBC;
-}
-
 .container {
     margin: 0 auto;
     max-width: 1200px;
@@ -64,8 +57,6 @@ body {
     justify-content: space-between;
     padding: 10px 20px;
     margin-bottom: 20px;
-    border-radius: 5px;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
 }
 
 .menu a {
@@ -73,29 +64,28 @@ body {
     font-size: 18px;
     font-weight: bold;
     text-transform: uppercase;
+    height: 40px;
 }
 
 .menu a.button {
   display: inline-block;
-  border: 1px solid #ccc;
-  color:  #576CBC;
+  background-color: #B9E9FC;
+  color: #576CBC;
   font-size: 14px;
   padding: 6px 12px;
   text-align: center;
   text-decoration: none;
   cursor: pointer;
-  border-radius: 4px;
+  border-radius: 6px;
   transition: all 0.3s ease;
+  
 }
 
 a.button:hover {
   background-color: #B9E9FC;
-  color: ;
-  border-color: #333;
 }
 
 .menu button {
-    color:  #576CBC;
     border: none;
     padding: 10px 20px;
     font-size: 16px;
@@ -104,7 +94,6 @@ a.button:hover {
 }
 
 .menu button:hover {
-    background-color: #f0f0f0;
 }
 
 h1, h2, h3, h4, h5, h6 {
@@ -142,8 +131,8 @@ img {
 </head>
 <body>
 	<%-- 전체 영역 --%>
-	<div style="margin-left: 200px; margin-right: 200px; background-color: #DAF5FF; border-radius: 10px">
-		<div class="menu" style="display: flex; width: 100%; margin-bottom: 10px; padding: 40px; background-color: #DAF5FF">
+	<div style="margin-left: 200px; margin-right: 200px; border-radius: 10px">
+		<div class="menu" style="display: flex; width: 100%; margin-bottom: 10px; padding: 40px;">
 			<div>
 				<form action="/mapAndReview?contentId=${requestScope.contentid }&cityname=${cityname}" method="post">
 					<input type="hidden" name="mapx" value="${detail.mapx }" /> 
