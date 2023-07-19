@@ -44,7 +44,7 @@ public class TourDetailController extends HttpServlet {
 		map.put("userId", userId);
 		map.put("contentId", contentId);
 
-		Status status = sqlSession.selectOne("statuses.statusCheck", contentId);
+		Status status = sqlSession.selectOne("statuses.statusCheck", map);
 
 		if (status == null) {
 			req.setAttribute("status", 0);
